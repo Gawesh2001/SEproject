@@ -1,49 +1,29 @@
 
 
-//SEARCH BAR
+document.getElementById('movie-search').addEventListener('input', function() {
+        var query = this.value.trim();
+        if (query.length === 0) {
+            document.getElementById('suggestions-list').style.display = 'none';
+            return;
+        }
+        fetch('movie-search?query=' + encodeURIComponent(query))
+            .then(response => response.text())
+            .then(data => {
+                var suggestionsList = document.getElementById('suggestions-list');
+                suggestionsList.innerHTML = data;
+                suggestionsList.style.display = data.trim() !== '' ? 'block' : 'none';
+            })
+            .catch(error => console.error('Error:', error));
+    });
 
-const searchInput = document.getElementById('movie-search');
-const suggestionsList = document.getElementById('search-suggestions');
-
-// Handle input event
-searchInput.addEventListener('input', async () => {
-    const query = searchInput.value.trim();
-
-    if (query.length === 0) {
-        suggestionsList.innerHTML = ''; // Clear suggestions if input is empty
-        return;
-    }
-
-    try {
-        // Fetch movie suggestions from the server
-        const response = await fetch(`/search?q=${encodeURIComponent(query)}`);
-        const suggestions = await response.json();
-
-        // Populate the suggestions list
-        suggestionsList.innerHTML = '';
-        suggestions.forEach(movie => {
-            const suggestionItem = document.createElement('li');
-            suggestionItem.textContent = movie.title;
-
-            // Handle click on a suggestion
-            suggestionItem.addEventListener('click', () => {
-                searchInput.value = movie.title; // Set search input to selected title
-                suggestionsList.innerHTML = ''; // Clear suggestions
-            });
-
-            suggestionsList.appendChild(suggestionItem);
-        });
-    } catch (error) {
-        console.error('Error fetching movie suggestions:', error);
-    }
-});
-
-// Close suggestions when clicking outside
-document.addEventListener('click', (event) => {
-    if (!event.target.closest('.search-bar')) {
-        suggestionsList.innerHTML = '';
-    }
-});
+    // Close suggestions when clicking outside
+    document.addEventListener('click', function(event) {
+        var suggestionsList = document.getElementById('suggestions-list');
+        var searchBar = document.querySelector('.search-bar');
+        if (!searchBar.contains(event.target)) {
+            suggestionsList.style.display = 'none';
+        }
+    });
 
 
 

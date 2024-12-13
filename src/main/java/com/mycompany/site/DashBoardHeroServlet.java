@@ -20,7 +20,7 @@ public class DashBoardHeroServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/abccinema";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "2001";
-    private static final String SELECT_QUERY = "SELECT * FROM addmovie LIMIT 1"; // Only fetch one movie
+    private static final String SELECT_QUERY = "SELECT * FROM addmovie";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,62 +41,64 @@ public class DashBoardHeroServlet extends HttpServlet {
             out.println("<head>");
             out.println("<meta charset='UTF-8'>");
             out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-            out.println("<title>View Movies</title>");
+            out.println("<title>Hero Movies</title>");
             out.println("<link rel=\"stylesheet\" href=\"/Site/DashBoard.css\">");
-            out.println("</head>");
-            out.println("<body>");
-            
-            out.println("<script src='/Site/js/hero.js'></script>");
+            out.println("<script>");
+            out.println("let movies = [];"); // JavaScript array to hold movie data
 
-
-            // Movie section (only one movie will be shown)
-            if (rs.next()) {
-                int movieId = rs.getInt("movieid"); // Ensure this matches your database column name
+            // Add movies to JavaScript array
+            while (rs.next()) {
+                int movieId = rs.getInt("movieid");
                 String movieName = rs.getString("movieName");
-                String movieCategory = rs.getString("movieCategory");
-                String releaseDate = rs.getString("releaseDate");
                 String movieThumbnail = rs.getString("movieThumbnail");
 
-                out.println("<section class='hero' style='background-image: url(" + movieThumbnail + ");'>");
-
-                out.println("<div class='hero-change-buttons'>");
-                out.println("<button id='prev-movie'>");
-                out.println("<svg xmlns='http://www.w3.org/2000/svg' height='48' viewBox='0 96 960 960' width='48' class='hero-icon'>");
-                out.println("<path d='M560 816 320 576l240-240 42 42-198 198 198 198-42 42Z' />");
-                out.println("</svg>");
-                out.println("</button>");
-                out.println("<button id='next-movie'>");
-                out.println("<svg xmlns='http://www.w3.org/2000/svg' height='48' viewBox='0 96 960 960' width='48' class='hero-icon'>");
-                out.println("<path d='M400 816l240-240-240-240-42 42 198 198-198 198 42 42Z'/>");
-                out.println("</svg>");
-                out.println("</button>");
-                out.println("</div>");
-
-                out.println("<div class='hero-content' style='backg'>");
-                out.println("<h1 id='movie-title'>" + movieName + "</h1>");
-                out.println("<div class='hero-buttons'>");
-                out.println("<a href='#'>");
-                out.println("<button id='book-ticket' class='primary-buttons'>Book Tickets</button>");
-                out.println("</a>");
-                out.println("<a href='#'>");
-                out.println("<button id='see-details' class='secondary-buttons'>See Details</button>");
-                out.println("</a>");
-                out.println("</div>");
-                out.println("</div>");
-
-                out.println("<a href='#'>");
-                out.println("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='play-button'>");
-                out.println("<path fill-rule='evenodd' d='M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z' clip-rule='evenodd' />");
-                out.println("</svg>");
-                out.println("</a>");
-
-                out.println("</div>");
-                out.println("</section>");
-
-
-            } else {
-                out.println("<p>No movie available at the moment.</p>");
+                // Populate the JavaScript array
+                out.println("movies.push({ id: " + movieId + ", name: '" + movieName + "', thumbnail: '" + movieThumbnail + "' });");
             }
+
+            // JavaScript for rotating the hero movies
+            out.println("let currentIndex = 0;");
+            out.println("function displayMovie(index) {");
+            out.println("    const movie = movies[index];");
+            out.println("    if (!movie) return;");
+            out.println("    const heroSection = document.querySelector('.hero');");
+            out.println("    const movieTitle = document.getElementById('movie-title');");
+            out.println("    const bookTicketBtn = document.getElementById('book-ticket');");
+            out.println("    const seeDetailsBtn = document.getElementById('see-details');");
+            out.println("    heroSection.style.backgroundImage = `url(${movie.thumbnail})`;");
+            out.println("    movieTitle.textContent = movie.name;");
+            out.println("    bookTicketBtn.href = `/book/${movie.id}`;");
+            out.println("    seeDetailsBtn.href = `/details/${movie.id}`;");
+            out.println("}");
+            out.println("function rotateMovies() {");
+            out.println("    displayMovie(currentIndex);");
+            out.println("    currentIndex = (currentIndex + 1) % movies.length;");
+            out.println("}");
+            out.println("window.onload = function() {");
+            out.println("    if (movies.length > 0) {");
+            out.println("        rotateMovies();");
+            out.println("        setInterval(rotateMovies, 5000);"); // Rotate every 5 seconds
+            out.println("    }");
+            out.println("};");
+            out.println("</script>");
+            out.println("</head>");
+            out.println("<body>");
+
+            // Hero section with placeholders for dynamic content
+            out.println("<section class='hero'>");
+            out.println("<div class='hero-content'>");
+            out.println("<h1 id='movie-title'>Loading...</h1>");
+            out.println("<div class='hero-buttons'>");
+            out.println("<a id='book-ticket' href='#'><button class='primary-buttons'>Book Tickets</button></a>");
+            out.println("<a id='see-details' href='#'><button class='secondary-buttons'>See Details</button></a>");
+            out.println("</div>");
+            out.println("</div>");
+            out.println("<a href='#'>");
+            out.println("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='play-button'>");
+            out.println("<path fill-rule='evenodd' d='M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z' clip-rule='evenodd' />");
+            out.println("</svg>");
+            out.println("</a>");
+            out.println("</section>");
 
             out.println("</body>");
             out.println("</html>");

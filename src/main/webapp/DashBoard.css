@@ -58,7 +58,7 @@ hr{
 /* Paragraphs */
 p {
     font-size: 1rem; /* Paragraph text */
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
 }
 
 /* Links */
@@ -118,9 +118,8 @@ ul li, ol li {
     background-color: #f2f2f2; /* Slightly darker white */
     box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3); /* Subtle shadow */
     transform: scale(1.02); /* Slight zoom effect */
-    color: white;
+    color: rgb(255, 136, 0);
 }
-
 
 
 
@@ -135,7 +134,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px; /* Adjust spacing */
-    background-color: rgba(0, 0, 0, 0.144); /* Transparent black background */
+    background-color: transparent; /* Transparent black background */
     color: white; /* Text color */
     z-index: 10; 
 }                      
@@ -183,7 +182,6 @@ header .nav a:hover{
     align-items: center;
     background-color: white;
     border-radius: 5px;
-    overflow: hidden;
     height: 36px;
     width: 300px;
 }
@@ -191,9 +189,15 @@ header .nav a:hover{
 .search-bar input {
     border: none;
     padding: 0 10px;
+    font-size: 1rem;
     outline: none;
     flex: 1; /* Makes input take the available space */
 }
+
+ .iframe-container {
+    flex-grow: 1; /* Makes the iframe take the remaining space */
+    overflow: hidden;
+ }
 
 .search-bar .search-btn {
     border: none;
@@ -214,29 +218,8 @@ header .nav a:hover{
     transform: scale(1.02);
 }
 
-.suggestions {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #ccc;
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: #fff;
-    position: absolute;
-    width: 100%;
-    z-index: 1000; /* Ensure it appears above other elements */
-}
 
-.suggestions li {
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #333;
-}
 
-.suggestions li:hover {
-    background-color: #f0f0f0;
-}
 
 
 
@@ -262,23 +245,29 @@ header .nav a:hover{
 
 .hero {
     position: relative;
-    background-image: url();
-    background-size: cover; 
+    background-size: fit; 
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 500px;
+    height: 900px;
     width: 100%;
     display: flex;
     flex-direction: column;
     color: white; /* Ensure text contrasts with the background */
     padding: 20px;
+    margin-bottom: 0px;
 }
 
 .hero-content {
     position: absolute;
     left: 50px;
-    bottom: 40px;
+    bottom: 100px;
     color: white;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
 }
 
 /* Hero Content Buttons */
@@ -287,15 +276,20 @@ header .nav a:hover{
     gap: 10px;
 }
 
+.hero .hero-buttons button {
+    font-size: 2rem;
+    
+}
+
 .play-button {
     position: absolute;
-    bottom: 40px;
+    bottom: 100px;
     right: 50px;
     fill: white;
     background-color: rgba(255, 136, 0, 0.503);
     border-radius: 50%;
     padding: 10px 10px;
-    width: 60px;
+    width: 100px;
     cursor: pointer;
 }
 
@@ -336,7 +330,7 @@ header .nav a:hover{
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .movies-top{
@@ -351,23 +345,60 @@ header .nav a:hover{
     gap: 20px;
 }
 
+.filter-and-search .search-bar {
+    height: 50px;
+    width: 500px;
+}
+
+.filter-and-search .search-btn {
+    height: 50px;
+    border-radius: 5px;
+    width: 100px;
+}
+
 .movie-release-buttons button {
     border: none;
     color: white;
-    height: 36px;
+    height: 50px;
     padding: 5px 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     border-radius: 10px 10px 0 0;
-    background-color: grey; /* Default inactive color */
+    background-color: lightgray;
     cursor: pointer;
 }
+
+/* Active button style */
+button.active {
+    background-color: #ff8800;
+    color: white;
+    height: 60px;
+}
+
 
 .movie-release-buttons button:hover {
     background-color: darkorange; /* Optional hover effect */
 }
 
+.movie-release-buttons button:active {
+    background-color: #ff8800;
+    color: white;
+}
 
+.movies-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Dynamically wrap rows */
+    gap: 20px; /* Space between grid items */
+    padding: 20px;
+    overflow: visible; /* Allow items to expand without hiding them */
+    margin-top: 20px;
+}
 
+.movie-list {
+    height: auto; /* Let the container height grow dynamically */
+    overflow: visible; /* Avoid scrollbars */
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
 
 /* Movies */
 
@@ -393,7 +424,7 @@ header .nav a:hover{
 
 .movie-card .poster {
     width: 100%;
-    height: 390px;
+    height: 360px;
     min-height: 390px;
     background-color: #ccc;
     background-size: cover;
@@ -447,7 +478,7 @@ header .nav a:hover{
     white-space: normal; /* Allow text to wrap to the next line */
     word-wrap: break-word; /* Ensure long words break properly */
     line-height: 1; /* Adjust spacing between lines */
-    overflow: hidden;
+    
 }
 
 /* DEALS AND ADVERTICEMENTS */
@@ -458,6 +489,7 @@ header .nav a:hover{
     margin: 40px auto;
     text-align: center;
     position: relative;
+    border: 1px solid red;
 }
 
 .deals-advertisements h2 {
@@ -781,23 +813,23 @@ footer hr {
 
 
 
-#filter-button {
-    background: none; /* No background */
-    border: none; /* No border */
-    cursor: pointer; /* Hand pointer on hover */
+/*#filter-button {
+    background: none;  No background 
+    border: none;  No border 
+    cursor: pointer;  Hand pointer on hover 
 }
 
 #filter-button svg {
-    width: 32px; /* Adjust icon size */
+    width: 32px;  Adjust icon size 
     height: 32px;
-    fill: rgb(68, 68, 68); /* Icon color */
+    fill: rgb(68, 68, 68);  Icon color 
     transition: transform 0.2s ease, fill 0.2s ease;
 }
 
 #filter-button:hover svg {
-    transform: scale(1.1); /* Slight zoom effect on hover */
-    fill: rgb(255, 136, 0); /* Change color on hover */
-}
+    transform: scale(1.1);  Slight zoom effect on hover 
+    fill: rgb(255, 136, 0);  Change color on hover 
+}*/
 
 #date {
     width: 100%;
@@ -813,44 +845,66 @@ footer hr {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
-    margin-top: 40px;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
 }
 
+#suggestions-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-height: 600px;
+    max-width: 600px;
+    overflow-y: auto;
+    display: none;
+    position: absolute;
+    background-color: #f4f4f9;
+    color: #ff8800;
+    width: calc(100% - 20px);
+    top: calc(100% + 10px); /* Position the list just below the search bar */
+    right: 0;
+    z-index: 10; /* Ensure it's above other content */
+}
+
+#suggestions-list li {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 120px;  /* Adjusted height for better space */
+    border-bottom: 2px solid lightgray;
+}
+
+#suggestions-list li img {
+    width: 120px;   /* Increased width for images */
+    height: 80px;   /* Increased height for images */
+    object-fit: cover; /* Ensures the image scales without distortion */
+    margin-right: 20px;  /* Space between image and text */
+    border: 2px solid #ff8800;
+}
+
+#suggestions-list li:hover {
+    background-color: #ff8800;
+    color: white;
+    box-shadow: 0 8px 15px rgba(255, 136, 0, 0.6); /* Glow effect */
+    transform: scale(1.0);
+}
+
+
+
 
 /* Gawesh Css 
  Ensure that the movies container is displayed as a grid with 4 columns */
-.movies-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);  
-    gap: 20px;  
-    padding: 20px;
-    box-sizing: border-box;
-}
 
 
-.movie-container {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: auto;   
-    width: 100%;  
-    overflow: hidden;  
-}
 
- 
-.movie-container:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
 
- 
+
 /*.movie-thumbnail {
     width: 100%;
     height: 200px;  

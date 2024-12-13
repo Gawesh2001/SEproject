@@ -15,7 +15,7 @@
             <a href="index.html">Logo</a>
         </div>
         <nav class="nav">
-            <a href="index.html">Home</a>
+            <a href="DashBoard.jsp">Home</a>
             <a href="#movies">Movies</a>
             <a href="#deals-advertisements">Deals and Advertise</a>
             <a href="#">Contacts</a>
@@ -26,7 +26,9 @@
                 <input type="text" id="movie-search" placeholder="Search" autocomplete="off">
                 
                 <button class="search-btn">Search</button>
+                
             </div>
+            <ul id="suggestions-list"></ul>
             
             <div class="actions">
             <!-- Dynamic Login/Profile Section -->
@@ -38,57 +40,20 @@
         </div>
     </header>
 
-    <iframe src="hero" style="border:none; width:100%; height:100vh;"></iframe>
-
-
-    <section class="movies" id="movies">
-        <h2>Movies</h2>
-        <div class="movies-top">
-            <div class="movie-release-buttons">
-                <button>Now Showing</button>
-                <button>Coming Soon</button>
-            </div>
-            <div class="filter-and-search">
-                
-                <div class="search-bar">
-                    <input type="text" placeholder="Search">
-                    <button class="search-btn">Search</button>
-                </div>  
-            </div>
-        </div>
-        <hr>
-
-        <div class="movie-list" id="movieList">
-            <!-- Additional movies will be dynamically loaded here -->
-            <iframe src="movie" style="border:none; width:100%; height:100vh;"></iframe>
-        </div>
+    <section class="banner">
+        <iframe src="hero" style="border:none; width:100%; height:1000px;"></iframe>
     </section>
 
 
-    <section class="deals-advertisements" id="deals-advertisements">
-        <h2>Deals and Advertisements</h2>
-        <div class="slider-container">
-            <button id="prev-deal" class="nav-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24">
-                    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" />
-                </svg>
-            </button>
-            <div class="deals-wrapper">
-                <div class="deals-container">
-                    <!-- Deals will be dynamically generated here -->
-                </div>
-            </div>
-            <button id="next-deal" class="nav-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24">
-                    <path d="M8.59 16.59L13.17 12l-4.58-4.59L10 6l6 6-6 6z" />
-                </svg>
-            </button>
-        </div>
+    <iframe src="movie" id="movies" style="border:none; width:100%; height: 900px;"></iframe>
+
+    <section class="deal-advertisements" id="deals-advertisements">
+        <iframe src="deals" style="border:none; width:100%;"></iframe>
     </section>
     
     <footer class="footer">
         <nav class="footer-nav">
-            <a href="index.html">Home</a>
+            <a href="DashBoard.jsp">Home</a>
             <a href="#movies">Movies</a>
             <a href="#deals-advertisements">Deals and Advertise</a>
             <a href="#">Contacts</a>
@@ -155,6 +120,31 @@
     
     
     
-    <script src="DashBoard.js"></script>
+    <script>
+        document.getElementById('movie-search').addEventListener('input', function() {
+        var query = this.value.trim();
+        if (query.length === 0) {
+            document.getElementById('suggestions-list').style.display = 'none';
+            return;
+        }
+        fetch('movie-search?query=' + encodeURIComponent(query))
+            .then(response => response.text())
+            .then(data => {
+                var suggestionsList = document.getElementById('suggestions-list');
+                suggestionsList.innerHTML = data;
+                suggestionsList.style.display = data.trim() !== '' ? 'block' : 'none';
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', function(event) {
+        var suggestionsList = document.getElementById('suggestions-list');
+        var searchBar = document.querySelector('.search-bar');
+        if (!searchBar.contains(event.target)) {
+            suggestionsList.style.display = 'none';
+        }
+    });
+    </script>
 </body>
 </html>
