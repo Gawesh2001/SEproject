@@ -119,9 +119,11 @@ public class DashBoardMovieServlet extends HttpServlet {
 
                     // Book Tickets button
                     
-                    out.println("<a target='_blank'>");
-out.println("<button class='primary-buttons' onclick='window.open(\"Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "\", \"_blank\")'>Book Tickets</button>");
-out.println("</a>");
+//                    out.println("<a>");
+//                    out.println("<button class='primary-buttons' onclick='window.top.href=\"Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "\"'>Book Tickets</button>");
+//                    out.println("</a>");
+                    out.println("<button class='primary-buttons' onclick='window.top.location.href=\"Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "\"'>Book Tickets</button>");
+
 
 
                     // Play button (SVG icon)
