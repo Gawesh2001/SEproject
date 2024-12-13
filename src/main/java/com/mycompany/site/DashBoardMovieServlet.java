@@ -94,6 +94,7 @@ public class DashBoardMovieServlet extends HttpServlet {
                 String movieCategory = rs.getString("movieCategory");
                 String releaseDate = rs.getString("releaseDate");
                 String movieThumbnail = rs.getString("movieThumbnail");
+                String timeframe = rs.getString("timeframe");
 
                 // Determine if the movie is now showing or coming soon
                 boolean isNowShowing = releaseDate.compareTo(today) <= 0;
@@ -107,9 +108,9 @@ public class DashBoardMovieServlet extends HttpServlet {
 
                     // Movie details (name, genre)
                     out.println("<div class='details'>");
-                    out.println("<a href='#'>");
+                    
                     out.println("<h3 id='movieName'>" + movieName + "</h3>");
-                    out.println("</a>");
+                    
                     out.println("<hr>");
                     out.println("<div class='time-genre'>");
                     out.println("<p id='movieGenre'>" + movieCategory + "</p>");
@@ -117,9 +118,11 @@ public class DashBoardMovieServlet extends HttpServlet {
                     out.println("</div>");
 
                     // Book Tickets button
-                    out.println("<a href='#'>");
-                    out.println("<button class='primary-buttons'>Book Tickets</button>");
-                    out.println("</a>");
+                    
+                    out.println("<a target='_blank'>");
+out.println("<button class='primary-buttons' onclick='window.open(\"Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "\", \"_blank\")'>Book Tickets</button>");
+out.println("</a>");
+
 
                     // Play button (SVG icon)
                     out.println("<a href='#'>");
