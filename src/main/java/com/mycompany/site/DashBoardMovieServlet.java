@@ -64,6 +64,7 @@ public class DashBoardMovieServlet extends HttpServlet {
                 String movieCategory = rs.getString("movieCategory");
                 String releaseDate = rs.getString("releaseDate");
                 String movieThumbnail = rs.getString("movieThumbnail");
+                String timeframe = rs.getString("timeframe");
                 
 
                 out.println("<div class='movie-card'>");
@@ -82,7 +83,10 @@ public class DashBoardMovieServlet extends HttpServlet {
                 out.println("</div>");
 
                 out.println("<a href=''>");
-                out.println("<button class='primary-buttons'>Book Tickets</button>");
+                //out.println("<button class='primary-buttons' onclick='window.location.href='Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "\"'>Book Tickets</button>");
+               out.println("<button class='primary-buttons' onclick=\"window.location.href='Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "'\">Book Tickets</button>");
+
+                //out.println("<button type='button' class='action-button' onclick='window.location.href=\"Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "\"'>Buy Ticket</button>");
                 out.println("</a>");
 
                 out.println("<a href=''>");
