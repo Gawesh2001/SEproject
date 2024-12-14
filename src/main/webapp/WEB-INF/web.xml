@@ -7,6 +7,11 @@
         <welcome-file>DashBoard.jsp</welcome-file>
     </welcome-file-list>
     
+    
+    
+     
+    
+    
  <servlet>
         <servlet-name>CreateAccount</servlet-name>
         <servlet-class>com.mycompany.site.CreateAccount</servlet-class>
@@ -17,6 +22,8 @@
         <servlet-name>CreateAccount</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+
+
 
 
     <session-config>
