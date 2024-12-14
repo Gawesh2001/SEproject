@@ -15,41 +15,70 @@
     %>
 
     <div class="movie-info">
-        
         <div class="movie-details">
             <h2><%= movieName %></h2>
             <p>Timeframe: <input type="text" value="<%= timeframe %>" readonly></p>
-             <div class="date-picker">
-            <span for="date">Select Date:</span>
-            <input type="date" id="date" name="selectedDate" required>
-        </div>
+            
+            <!-- Date Picker -->
+            <div class="date-picker">
+                <span for="date">Select Date:</span>
+                <input type="text" id="selectedDate" name="selectedDate" required>
+            </div>
         </div>
     </div>
+
+    <!-- Movie Thumbnail -->
     <img src="<%= movieThumbnail %>" alt="Movie Thumbnail" class="movie-thumbnail">
+
     <form id="bookingForm" action="BookSeatServlet" method="POST">
         <input type="hidden" name="movieId" value="<%= movieId %>">
         <input type="hidden" name="movieName" value="<%= movieName %>">
         <input type="hidden" name="timeFrame" value="<%= timeframe %>">
+        <input type="hidden" name="selectedDate" id="hiddenSelectedDate">
 
-       
-       
-
+        <!-- Seating Area -->
         <div class="seating-area">
-            <!-- Generate 49 seats -->
             <% for (int i = 1; i <= 40; i++) { %>
                 <input type="checkbox" id="seat<%= i %>" name="selectedSeats" value="S<%= i %>" class="seat">
                 <label for="seat<%= i %>">S<%= i %></label>
             <% } %>
         </div>
-        
+
+        <!-- Total Price Information -->
         <div class="info">
-            <span for="totalPrice" >Total Price:</span>
+            <span for="totalPrice">Total Price:</span>
             <input type="text" id="totalPrice" name="totalPrice" readonly>
         </div>
 
         <button type="submit">Book Seats</button>
     </form>
 
+    <!-- Including Flatpickr for Date Picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        // Initialize Flatpickr to allow yyyy-mm-dd format
+        flatpickr("#selectedDate", {
+            dateFormat: "Y-m-d",  // yyyy-mm-dd format
+        });
+
+        // Before form submission, set the hidden input field with the selected date value
+        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            var selectedDate = document.getElementById("selectedDate").value;
+
+            // Validate if a valid date is selected
+            if (!selectedDate) {
+                event.preventDefault();
+                alert('Please select a valid date.');
+            } else {
+                // Assign the selected date to the hidden input field (for submission)
+                document.getElementById("hiddenSelectedDate").value = selectedDate;
+            }
+        });
+    </script>
+
+    <!-- Include JavaScript for seat selection and price calculation -->
     <script src="SeatsJS.js"></script>
 </body>
 </html>
