@@ -43,6 +43,15 @@
                 <label for="seat<%= i %>">S<%= i %></label>
             <% } %>
         </div>
+        
+         <!-- Email and Phone Number -->
+       <div class="user-info" style="text-align: center; margin-top: 20px;">
+    <spane for="email" style="display: block; margin-bottom: 5px;">Email:</spane>
+    <input type="email" id="email" name="email" required style="display: block; margin: 0 auto; padding: 5px; width: 50%;"><br><br>
+
+    <spane for="phoneNumber" style="display: block; margin-bottom: 5px;">Phone Number:</spane>
+    <input type="text" id="phoneNumber" name="phoneNumber" required style="display: block; margin: 0 auto; padding: 5px; width: 50%;">
+</div>
 
         <!-- Total Price Information -->
         <div class="info">

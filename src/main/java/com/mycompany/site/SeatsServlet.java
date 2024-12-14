@@ -24,7 +24,9 @@ public class SeatsServlet extends HttpServlet {
         String timeFrame = request.getParameter("timeFrame");
         String[] selectedSeats = request.getParameterValues("selectedSeats");
         String totalPrice = request.getParameter("totalPrice");
-        String selectedDate = request.getParameter("selectedDate"); // Retrieve selected date from date picker
+        String selectedDate = request.getParameter("selectedDate");
+        String email = request.getParameter("email"); // Get user email
+        String phoneNumber = request.getParameter("phoneNumber"); // Get user phone number
 
         // Validate if any seats are selected
         if (selectedSeats == null || selectedSeats.length == 0) {
@@ -38,8 +40,14 @@ public class SeatsServlet extends HttpServlet {
             return;
         }
 
+        // Validate if email and phone number are provided
+        if (email == null || email.isEmpty() || phoneNumber == null || phoneNumber.isEmpty()) {
+            response.getWriter().write("<script>alert('Please provide a valid email and phone number.'); window.history.back();</script>");
+            return;
+        }
+
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String sql = "INSERT INTO ticketbookings (movie_name, movie_id, timeframe, selected_date, selected_seats, total_price) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO ticketbookings (movie_name, movie_id, timeframe, selected_date, selected_seats, total_price, u_email, u_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             BigDecimal pricePerSeat = new BigDecimal(totalPrice).divide(new BigDecimal(selectedSeats.length), 2, BigDecimal.ROUND_HALF_UP);
@@ -49,9 +57,11 @@ public class SeatsServlet extends HttpServlet {
                 statement.setString(1, movieName);
                 statement.setString(2, movieId);
                 statement.setString(3, timeFrame);
-                statement.setString(4, selectedDate); // Use the selected date from the date picker
+                statement.setString(4, selectedDate);
                 statement.setString(5, seat);
                 statement.setBigDecimal(6, pricePerSeat);
+                statement.setString(7, email); // Store user email
+                statement.setString(8, phoneNumber); // Store user phone number
                 statement.addBatch();
             }
 
