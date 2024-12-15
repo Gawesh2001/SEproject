@@ -7,14 +7,22 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #282828; /* Dark grayish black */
+    color: white;
     line-height: 1.6;
+
 }
+
+
+header .logo img :hover {
+    transform: scale(1.2);
+}
+
+
 
 /* Headings Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', sans-serif; /* Headings font family */
+    font-family: "Poppins", sans-serif;
     font-weight: 700;
     color: #ffffff;
 }
@@ -28,7 +36,7 @@ h1 {
 h2 {
     font-size: 2rem;
     letter-spacing: -0.8px;
-    color: #222;
+    color: white;
 }
 
 h3 {
@@ -52,18 +60,19 @@ h6 {
 hr{
     border: none;
     height: 1px;
-    background-color: lightgray;
+    background-color: #555;
 }
 
 /* Paragraphs */
 p {
     font-size: 1rem; /* Paragraph text */
+    color: #B0B0B0;
     /*margin-bottom: 1rem;*/
 }
 
 /* Links */
 a {
-    color: #0066cc; /* Link color */
+    color: #B0B0B0; /* Link color */
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -139,10 +148,6 @@ header {
     z-index: 10; 
 }                      
 
-header .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
 
 header .logo a{
     text-decoration: none;
@@ -168,7 +173,62 @@ header .nav a {
 
 header .nav a:hover{
     color: rgb(255, 136, 0);
+    transform: scale(1.01);
 }
+
+.dropdown {
+    position: relative;
+}
+
+.support {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon {
+    width: 25px; /* Increase width */
+    height: 25px; /* Increase height */
+    transition: transform 0.3s; /* Smooth rotation */
+}
+
+
+.dropdown:hover .icon {
+    transform: rotate(180deg);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Position the dropdown below the 'Support' */
+    left: 0;
+    display: none; /* Hides dropdown by default */
+    flex-direction: column; /* Stack items vertically */
+    background-color: transparent;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    min-width: 150px; /* Ensures proper dropdown width */
+}
+
+.dropdown-menu a {
+    padding: 10px 20px;
+    color: black;
+    text-decoration: none;
+    display: block; /* Ensures full-width clickable area */
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0; /* Adds hover effect */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex; /* Makes dropdown visible on hover */
+}
+
 
 .actions {
     display: flex;
@@ -194,10 +254,6 @@ header .nav a:hover{
     flex: 1; /* Makes input take the available space */
 }
 
- .iframe-container {
-    flex-grow: 1; /* Makes the iframe take the remaining space */
-    overflow: hidden;
- }
 
 .search-bar .search-btn {
     border: none;
@@ -305,23 +361,31 @@ header .nav a:hover{
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    margin-top: 10%;
+    margin-top: 20%;
 }
 
 .hero-change-buttons button{
     border: none;
     padding: 5px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0);
+    padding: 0px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.hero-change-buttons button:hover {
+    background-color: #ff8800;
+    transform: scale(1.1);
 }
 
 .hero-change-buttons .hero-icon{
-    fill: white;
+    fill: rgb(255, 136, 0);
 }
 
 .hero-change-buttons .hero-icon:hover{
     transform: scale(1.2);
-    fill:  rgb(255, 136, 0);
+    fill:  white;
 }
 
 /* MOVIES SECTION */
@@ -358,12 +422,12 @@ header .nav a:hover{
 
 .movie-release-buttons button {
     border: none;
-    color: white;
+    color: lightgrey;
     height: 50px;
     padding: 5px 10px;
     font-size: 1.5rem;
     border-radius: 10px 10px 0 0;
-    background-color: lightgray;
+    background-color: #555;
     cursor: pointer;
 }
 
@@ -376,7 +440,8 @@ button.active {
 
 
 .movie-release-buttons button:hover {
-    background-color: darkorange; /* Optional hover effect */
+    background-color: #777; /* Optional hover effect */
+    color: white;
 }
 
 .movie-release-buttons button:active {
@@ -483,19 +548,17 @@ button.active {
 
 /* DEALS AND ADVERTICEMENTS */
 
-/* General Section Styling */
 .deals-advertisements {
     width: 90%;
     margin: 40px auto;
     text-align: center;
     position: relative;
-    border: 1px solid red;
 }
 
 .deals-advertisements h2 {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #333;
+    color: white;
     margin-bottom: 20px;
 }
 
@@ -526,51 +589,44 @@ button.active {
 /* Individual Deal */
 .deal {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1000px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     gap: 20px;
-    min-width: 100%;
+    
 }
 
 .deal img {
     width: 50%;
-    height: auto;
-    border-radius: 8px;
+    
 }
 
-.deal-details {
-    flex: 1;
+.deal .deal-details {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
     text-align: left;
 }
 
-.deal-details h3 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    color: #333;
+.deal .deal-details p {
+    height: 190px;
+    overflow: hidden;
+    margin-bottom: 5px;
 }
 
-.deal-details p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.deal-details .primary-button {
-    background-color: #ff6f00;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.deal-details .primary-button:hover {
-    background-color: #e65c00;
+.deal .secondary-buttons:hover {
+    background-color: rgb(255, 136, 0); 
+    box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3);
+    transform: scale(1.02); 
+    color: white;
 }
 
 /* Navigation Buttons */
@@ -597,6 +653,8 @@ button.active {
     width: 24px;
     height: 24px;
 }
+
+
 
 
 /* FOOTER */
@@ -862,7 +920,7 @@ footer hr {
     display: none;
     position: absolute;
     background-color: #f4f4f9;
-    color: #ff8800;
+    color: #333;
     width: calc(100% - 20px);
     top: calc(100% + 10px); /* Position the list just below the search bar */
     right: 0;
@@ -876,13 +934,13 @@ footer hr {
     cursor: pointer;
     display: flex;
     align-items: center;
-    height: 120px;  /* Adjusted height for better space */
+    height: 130px;  /* Adjusted height for better space */
     border-bottom: 2px solid lightgray;
 }
 
 #suggestions-list li img {
     width: 120px;   /* Increased width for images */
-    height: 80px;   /* Increased height for images */
+    height: 90px;   /* Increased height for images */
     object-fit: cover; /* Ensures the image scales without distortion */
     margin-right: 20px;  /* Space between image and text */
     border: 2px solid #ff8800;
@@ -891,7 +949,6 @@ footer hr {
 #suggestions-list li:hover {
     background-color: #ff8800;
     color: white;
-    box-shadow: 0 8px 15px rgba(255, 136, 0, 0.6); /* Glow effect */
     transform: scale(1.0);
 }
 

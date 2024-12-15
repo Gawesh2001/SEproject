@@ -72,11 +72,6 @@ public class DashBoardMovieServlet extends HttpServlet {
             out.println("<button id='comingSoonBtn' class='comingSoonBtn " + (status.equals("comingSoon") ? "active" : "") + "' onclick='filterMovies(\"comingSoon\")'>Coming Soon</button>");
             out.println("</div>");
             out.println("<div class='filter-and-search'>");
-            out.println("<div class='search-bar'>");
-            out.println("<input type='text' id='movie-search' placeholder='Search' autocomplete='off'>");
-            out.println("<button class='search-btn'>Search</button>");
-            out.println("</div>");
-
             // Suggestions List
             out.println("<ul id='suggestions-list'></ul>");
             out.println("</div>");
@@ -95,6 +90,7 @@ public class DashBoardMovieServlet extends HttpServlet {
                 String releaseDate = rs.getString("releaseDate");
                 String movieThumbnail = rs.getString("movieThumbnail");
                 String timeframe = rs.getString("timeframe");
+                String trailerLink = rs.getString("youtube"); // Assuming 'youtube' column stores trailer URL
 
                 // Determine if the movie is now showing or coming soon
                 boolean isNowShowing = releaseDate.compareTo(today) <= 0;
@@ -108,9 +104,7 @@ public class DashBoardMovieServlet extends HttpServlet {
 
                     // Movie details (name, genre)
                     out.println("<div class='details'>");
-                    
                     out.println("<h3 id='movieName'>" + movieName + "</h3>");
-                    
                     out.println("<hr>");
                     out.println("<div class='time-genre'>");
                     out.println("<p id='movieGenre'>" + movieCategory + "</p>");
@@ -118,16 +112,10 @@ public class DashBoardMovieServlet extends HttpServlet {
                     out.println("</div>");
 
                     // Book Tickets button
-                    
-//                    out.println("<a>");
-//                    out.println("<button class='primary-buttons' onclick='window.top.href=\"Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "\"'>Book Tickets</button>");
-//                    out.println("</a>");
                     out.println("<button class='primary-buttons' onclick='window.top.location.href=\"Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "\"'>Book Tickets</button>");
 
-
-
-                    // Play button (SVG icon)
-                    out.println("<a href='#'>");
+                    // Play button (SVG icon) - linked to the trailer
+                    out.println("<a href='" + trailerLink + "' target='_blank'>");
                     out.println("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='movie-play-button'>");
                     out.println("<path fill-rule='evenodd' d='M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z' clip-rule='evenodd' />");
                     out.println("</svg>");

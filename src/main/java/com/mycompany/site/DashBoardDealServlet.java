@@ -25,9 +25,9 @@ public class DashBoardDealServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         try {
             // Load JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -43,20 +43,18 @@ public class DashBoardDealServlet extends HttpServlet {
                 out.println("<head>");
                 out.println("<meta charset='UTF-8'>");
                 out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-                out.println("<title>View Movies</title>");
-                out.println("<link rel=\"stylesheet\" href=\"/Site/DashBoard.css\">");
-                out.println("<script>");
-                
-                out.println("</script>");
+                out.println("<title>Hero Movies</title>");
+                out.println("<link rel=\"stylesheet\" href=\"/Site/DashBoard.css\">");      
                 out.println("</head>");
                 out.println("<body>");
 
-                // Start HTML output
-                
+
+                // Start outputting the HTML
+                out.println("<section class=\"deals-advertisements\" id=\"deals-advertisements\">");
                 out.println("<h2>Deals and Advertisements</h2>");
                 out.println("<div class=\"slider-container\">");
 
-                // Navigation buttons
+                // Previous button
                 out.println("<button id=\"prev-deal\" class=\"nav-button\">");
                 out.println("<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" viewBox=\"0 0 24 24\">");
                 out.println("<path d=\"M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z\" />");
@@ -67,24 +65,27 @@ public class DashBoardDealServlet extends HttpServlet {
                 out.println("<div class=\"deals-wrapper\">");
                 out.println("<div class=\"deals-container\">");
 
-                // Dynamically generate deals/ads
+                // Dynamically generate deals
                 while (rs.next()) {
-                    String dealTitle = rs.getString("dealTitle"); // Replace with DB column names
-                    String dealImage = rs.getString("dealImage");
-                    String dealLink = rs.getString("dealLink");
+                    String dealTitle = rs.getString("dealTitle"); // Replace with your actual column name
+                    String dealImage = rs.getString("dealImage"); // Replace with your actual column name
+                    String dealLink = rs.getString("dealLink");   // Replace with your actual column name
+                    String dealDescription = rs.getString("dealDescription"); // Replace with your actual column name
 
-                    out.println("<div class=\"deal-item\">");
-                    out.println("<a href=\"" + dealLink + "\" target=\"_blank\">");
-                    out.println("<img src=\"" + dealImage + "\" alt=\"" + dealTitle + "\" class=\"deal-image\">");
-                    out.println("</a>");
-                    out.println("<h2 class=\"deal-title\">" + dealTitle + "</h2>");
+                    out.println("<div class=\"deal\">");
+                    out.println("<img src=\"" + dealImage + "\" alt=\"" + dealTitle + "\">\n");
+                    out.println("<div class=\"deal-details\">");
+                    out.println("<h3>" + dealTitle + "</h3>");
+                    out.println("<p>" + dealDescription + "</p>");
+                    out.println("<a href=\"" + dealLink + "\" class=\"secondary-buttons\">See Details</a>");
+                    out.println("</div>");
                     out.println("</div>");
                 }
 
                 out.println("</div>"); // End deals-container
                 out.println("</div>"); // End deals-wrapper
 
-                // Navigation button (next)
+                // Next button
                 out.println("<button id=\"next-deal\" class=\"nav-button\">");
                 out.println("<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" viewBox=\"0 0 24 24\">");
                 out.println("<path d=\"M8.59 16.59L13.17 12l-4.58-4.59L10 6l6 6-6 6z\" />");
@@ -92,11 +93,42 @@ public class DashBoardDealServlet extends HttpServlet {
                 out.println("</button>");
 
                 out.println("</div>"); // End slider-container
+                out.println("</section>"); // End deals-advertisements
+
+                // Add JavaScript for navigation buttons and auto-change
+                out.println("<script>");
+                out.println("let currentIndex = 0;");
+                out.println("const deals = document.querySelectorAll('.deal');");
+                out.println("function showDeal(index) {");
+                out.println("  deals.forEach((deal, i) => {");
+                out.println("    deal.style.display = i === index ? 'flex' : 'none';");
+                out.println("  });");
+                out.println("}");
+                out.println("document.getElementById('prev-deal').addEventListener('click', () => {");
+                out.println("  currentIndex = (currentIndex - 1 + deals.length) % deals.length;");
+                out.println("  showDeal(currentIndex);");
+                out.println("});");
+                out.println("document.getElementById('next-deal').addEventListener('click', () => {");
+                out.println("  currentIndex = (currentIndex + 1) % deals.length;");
+                out.println("  showDeal(currentIndex);");
+                out.println("});");
+
+                // Auto-change every 5 seconds
+                out.println("setInterval(() => {");
+                out.println("  currentIndex = (currentIndex + 1) % deals.length;");
+                out.println("  showDeal(currentIndex);");
+                out.println("}, 5000);");
+
+                out.println("showDeal(currentIndex);");
+                out.println("</script>");
                 
+                out.println("</body>");
+                out.println("</html>");
+
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            out.println("<section><p>Error loading deals and advertisements. Please try again later.</p></section>");
+            out.println("<p>Error fetching deals. Please try again later.</p>");
         }
     }
 }

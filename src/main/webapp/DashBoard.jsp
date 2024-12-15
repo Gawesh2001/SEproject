@@ -12,7 +12,9 @@
     
     <header>
         <div class="logo">
-            <a href="index.html">Logo</a>
+            <a href="DashBoard.jsp">
+                <img src="assets/logo.png" alt="Site Logo" width="100" height="auto">
+            </a>
         </div>
         <nav class="nav">
             <a href="DashBoard.jsp">Home</a>
@@ -20,6 +22,18 @@
             <a href="#deals-advertisements">Deals and Advertise</a>
             <a href="#">Contacts</a>
             <a href="#">About Us</a>
+            <div class="dropdown">
+                <a href="#" class="support">
+                    Support
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon">
+                        <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="#feedback">Feedback</a>
+                    <a href="#cancel-booking">Cancel Booking</a>
+                </div>
+            </div>
         </nav>
         <div class="actions">
             <div class="search-bar">
@@ -47,9 +61,9 @@
 
     <iframe src="movie" id="movies" style="border:none; width:100%; height: 900px;"></iframe>
 
-    <section class="deal-advertisements" id="deals-advertisements">
-        <iframe src="deals" style="border:none; width:100%;"></iframe>
-    </section>
+    
+    <iframe src="deals" id="deals-advertisements" style="border:none; width:100%; height: 650px"></iframe>
+    
     
     <footer class="footer">
         <nav class="footer-nav">
@@ -58,12 +72,28 @@
             <a href="#deals-advertisements">Deals and Advertise</a>
             <a href="#">Contacts</a>
             <a href="#">About Us</a>
+            <div class="dropdown">
+                <a href="#" class="support">
+                    Support
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon">
+                        <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="#feedback">Feedback</a>
+                    <a href="#cancel-booking">Cancel Booking</a>
+                </div>
+            </div>
         </nav>
         <hr>
         <div class="footer-top">
             <!-- Logo and Description -->
             <div class="footer-logo">
-                <div class="logo-box">LOGO</div>
+                <div class="logo-box">
+                    <a href="index.html">
+                        <img src="assets/logo.png" alt="Site Logo" width="100" height="auto" class="logo">
+                    </a>
+                </div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
@@ -74,9 +104,7 @@
             <div class="footer-useful-links">
                 <h4>USEFUL LINKS</h4>
                 <ul>
-                    <li><a href="#">My Account</a></li>
                     <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
                     <li><a href="#">Terms and Conditions</a></li>
                 </ul>
             </div>
