@@ -65,12 +65,9 @@ public class DashBoardHeroServlet extends HttpServlet {
             out.println("    const heroSection = document.querySelector('.hero');");
             out.println("    const movieTitle = document.getElementById('movie-title');");
             out.println("    const bookTicketBtn = document.getElementById('book-ticket');");
-            out.println("    const seeDetailsBtn = document.getElementById('see-details');");
             out.println("    heroSection.style.backgroundImage = `url(${movie.thumbnail})`;");
             out.println("    movieTitle.textContent = movie.name;");
             out.println("    bookTicketBtn.href = `/book/${movie.id}`;");
-            out.println("    seeDetailsBtn.href = `/details/${movie.id}`;");
-            out.println("    // Update the trailer button dynamically");
             out.println("    const playButton = document.getElementById('play-button');");
             out.println("    playButton.href = movie.trailerLink;");
             out.println("}");
@@ -86,11 +83,13 @@ public class DashBoardHeroServlet extends HttpServlet {
             out.println("    displayMovie(currentIndex);");
             out.println("}");
 
-            // Automatically change the movie every 5 seconds
+            // Automatically change the movie every 3 seconds
             out.println("window.onload = function() {");
             out.println("    if (movies.length > 0) {");
-            out.println("        displayMovie(currentIndex);");
-            out.println("        setInterval(nextMovie, 3000);");
+            out.println("        displayMovie(currentIndex);"); // Display the first movie
+            out.println("        setInterval(function() {");
+            out.println("            nextMovie();"); // Change movie every 3 seconds
+            out.println("        }, 3000);");
             out.println("    }");
             out.println("};");
             out.println("</script>");
@@ -115,7 +114,8 @@ public class DashBoardHeroServlet extends HttpServlet {
             out.println("<h1 id='movie-title'>Loading...</h1>");
             out.println("<div class='hero-buttons'>");
             out.println("<a id='book-ticket' href='#'><button class='primary-buttons'>Book Tickets</button></a>");
-//            out.println("<a id='see-details' href='#'><button class='secondary-buttons'>See Details</button></a>");
+            // Uncomment to enable "See Details" button if needed
+            // out.println("<a id='see-details' href='#'><button class='secondary-buttons'>See Details</button></a>");
             out.println("</div>");
             out.println("</div>");
 

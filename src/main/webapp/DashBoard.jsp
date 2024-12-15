@@ -71,12 +71,10 @@
 
 
 
-    <section class="banner">
-        <iframe src="hero" style="border:none; width:100%; height:850px; margin-bottom:100px "></iframe>
-    </section>
+    <iframe src="hero" style="border:none; width:100%; height:650px; margin-bottom:50px "></iframe>
 
 
-    <iframe src="movie" id="movies" style="border:none; width:100%; height: 900px;"></iframe>
+    <iframe src="movie" id="movies" style="border:none; width:100%; height: 1200px;"></iframe>
 
     
     <iframe src="deals" id="deals-advertisements" style="border:none; width:100%; height: 650px"></iframe>
