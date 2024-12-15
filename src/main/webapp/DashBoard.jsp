@@ -38,24 +38,41 @@
         <div class="actions">
             <div class="search-bar">
                 <input type="text" id="movie-search" placeholder="Search" autocomplete="off">
-                
                 <button class="search-btn">Search</button>
-                
             </div>
             <ul id="suggestions-list"></ul>
-            
-            <div class="actions">
+
             <!-- Dynamic Login/Profile Section -->
-            <a href="LoginPage.jsp">
-                <button class="login-btn">
-                    Login
-                </button>
-            </a>
+            <%
+                HttpSession existingSession = request.getSession(false); // Do not create a session if none exists
+                String username = null;
+                if (existingSession != null) {
+                    username = (String) existingSession.getAttribute("username");
+                }
+            %>
+            <% if (username == null) { %>
+                <!-- User is not logged in -->
+                <a href="LoginPage.jsp">
+                    <button class="login-btn">Login</button>
+                </a>
+            <% } else { %>
+                <!-- User is logged in -->
+                <div class="dropdown">
+                    <button class="profile-btn">
+                        <%= username %> <!-- Display username -->
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="LogoutServlet">Logout</a>
+                    </div>
+                </div>
+            <% } %>
         </div>
     </header>
 
+
+
     <section class="banner">
-        <iframe src="hero" style="border:none; width:100%; height:1000px;"></iframe>
+        <iframe src="hero" style="border:none; width:100%; height:850px; margin-bottom:100px "></iframe>
     </section>
 
 
@@ -149,6 +166,11 @@
     
     
     <script>
+        function toggleDropdown() {
+            const menu = document.getElementById("dropdownMenu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
         document.getElementById('movie-search').addEventListener('input', function() {
         var query = this.value.trim();
         if (query.length === 0) {
