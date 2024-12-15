@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #282828; /* Dark grayish black */
+    background-color: #282828; 
     color: white;
     line-height: 1.6;
 
@@ -65,9 +65,8 @@ hr{
 
 /* Paragraphs */
 p {
-    font-size: 1rem; /* Paragraph text */
+    font-size: 1rem; 
     color: #B0B0B0;
-    /*margin-bottom: 1rem;*/
 }
 
 /* Links */
@@ -160,7 +159,7 @@ header .logo a:hover{
 
 header .nav {
     display: flex;
-    gap: 50px;
+    gap: 20px;
 }
 
 header .nav a {
@@ -274,12 +273,6 @@ header .nav a:hover{
     transform: scale(1.02);
 }
 
-
-
-
-
-
-
 /* Login Button */
 .login-btn {
     background-color: whitesmoke;
@@ -299,34 +292,33 @@ header .nav a:hover{
     color: white;
 }
 
+
+
 .hero {
     position: relative;
-    background-size: fit; 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 900px;
-    width: 100%;
     display: flex;
     flex-direction: column;
-    color: white; /* Ensure text contrasts with the background */
+    color: white;
     padding: 20px;
-    margin-bottom: 0px;
+    height: 650px;
 }
 
 .hero-content {
     position: absolute;
     left: 50px;
-    bottom: 100px;
+    bottom: 50px;
     color: white;
 }
 
 .hero h1 {
     font-size: 4rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-/* Hero Content Buttons */
+ Hero Content Buttons 
 .hero-buttons {
     display: flex;
     gap: 10px;
@@ -339,7 +331,7 @@ header .nav a:hover{
 
 .play-button {
     position: absolute;
-    bottom: 100px;
+    bottom: 50px;
     right: 50px;
     fill: white;
     background-color: rgba(255, 136, 0, 0.503);
@@ -352,7 +344,7 @@ header .nav a:hover{
 .play-button:hover{
     background-color: rgb(255, 136, 0);
     fill: white;
-    box-shadow: 0 8px 15px rgba(255, 136, 0, 0.6); /* Glow effect */
+    box-shadow: 0 8px 15px rgba(255, 136, 0, 0.6);  
     transform: scale(1.02);
 }
 
@@ -387,6 +379,7 @@ header .nav a:hover{
     transform: scale(1.2);
     fill:  white;
 }
+
 
 /* MOVIES SECTION */
 
@@ -670,7 +663,7 @@ button.active {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
-    gap: 50px;
+    gap: 30px;
 }
 
 .footer-nav a {

@@ -3,13 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Contact Us - ABC Cinema</title>
     <link rel="stylesheet" href="DashBoard.css">
-      
-    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #282828;
+            color: #333;
+        }
+
+        header {
+            position: relative; /* Allows the header to overlap the hero section */
+            top: 0;
+            left: 0;
+            width: 100%; /* Ensures the header spans the full width */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px; /* Adjust spacing */
+            background-color: transparent; /* Transparent black background */
+            color: white; /* Text color */
+            z-index: 10; 
+        }     
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #111;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        form input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: #ff8800;
+            outline: none; /* Remove the default outline for a cleaner look */
+        }
+        
+        input:active {
+            border: 1px solid #ff8800;
+        }
+        
+        form button {
+            padding: 10px 15px;
+            background-color: #ffffff;
+            color: #ff8800;
+            border: 1px solid #ff8800;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff8800;
+            color: #ffffff;
+        }
+
+        
+
+        .message {
+            text-align: center;
+            font-size: 1rem;
+            color: #4caf50;
+            margin-top: 20px;
+        }
+        
+        .subscribe-box {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .subscribe-box input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+        }
+
+        .subscribe-box button {
+            padding: 0 10px;
+            border: none;
+            background-color: #717171;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Ensures the icon is centered */
+        }
+
+        .subscribe-box button svg {
+            width: 20px; /* Adjust to your desired size */
+            height: 20px;
+            fill: white; /* Ensures the icon matches the button text color */
+        }
+
+        .subscribe-box button:hover {
+            background-color: #ff8800;
+        }
+    </style>
 </head>
 <body>
-    
+
     <header>
         <div class="logo">
             <a href="DashBoard.jsp">
@@ -69,18 +195,26 @@
         </div>
     </header>
 
+<div class="container">
+    <h2>We'd love to hear from you!</h2>
+    <form action="sendEmail.php" method="POST">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-    <iframe src="hero" style="border:none; width:100%; height:650px; margin-bottom:50px "></iframe>
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject" required>
 
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
 
-    <iframe src="movie" id="movies" style="border:none; width:100%; height: 1200px;"></iframe>
+        <button type="submit">Send Message</button>
+    </form>
+</div>
 
-    
-    <iframe src="deals" id="deals-advertisements" style="border:none; width:100%; height: 650px"></iframe>
-    
-    
-    <footer class="footer">
+<footer class="footer">
         <nav class="footer-nav">
             <a href="DashBoard.jsp">Home</a>
             <a href="#movies">Movies</a>
@@ -160,10 +294,8 @@
             </div>
         </div>
     </footer>
-    
-    
-    
-    <script>
+
+        <script>
         function toggleDropdown() {
             const menu = document.getElementById("dropdownMenu");
             menu.style.display = menu.style.display === "block" ? "none" : "block";

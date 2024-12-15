@@ -67,10 +67,10 @@ public class DashBoardDealServlet extends HttpServlet {
 
                 // Dynamically generate deals
                 while (rs.next()) {
-                    String dealTitle = rs.getString("dealTitle"); // Replace with your actual column name
-                    String dealImage = rs.getString("dealImage"); // Replace with your actual column name
-                    String dealLink = rs.getString("dealLink");   // Replace with your actual column name
-                    String dealDescription = rs.getString("dealDescription"); // Replace with your actual column name
+                    String dealTitle = rs.getString("dealTitle"); 
+                    String dealImage = rs.getString("dealImage"); 
+                    String dealLink = rs.getString("dealLink");   
+                    String dealDescription = rs.getString("dealDescription");
 
                     out.println("<div class=\"deal\">");
                     out.println("<img src=\"" + dealImage + "\" alt=\"" + dealTitle + "\">\n");
@@ -82,8 +82,8 @@ public class DashBoardDealServlet extends HttpServlet {
                     out.println("</div>");
                 }
 
-                out.println("</div>"); // End deals-container
-                out.println("</div>"); // End deals-wrapper
+                out.println("</div>"); 
+                out.println("</div>"); 
 
                 // Next button
                 out.println("<button id=\"next-deal\" class=\"nav-button\">");
@@ -92,8 +92,8 @@ public class DashBoardDealServlet extends HttpServlet {
                 out.println("</svg>");
                 out.println("</button>");
 
-                out.println("</div>"); // End slider-container
-                out.println("</section>"); // End deals-advertisements
+                out.println("</div>"); 
+                out.println("</section>"); 
 
                 // Add JavaScript for navigation buttons and auto-change
                 out.println("<script>");
@@ -113,11 +113,11 @@ public class DashBoardDealServlet extends HttpServlet {
                 out.println("  showDeal(currentIndex);");
                 out.println("});");
 
-                // Auto-change every 5 seconds
+                
                 out.println("setInterval(() => {");
                 out.println("  currentIndex = (currentIndex + 1) % deals.length;");
                 out.println("  showDeal(currentIndex);");
-                out.println("}, 5000);");
+                out.println("}, 3000);");
 
                 out.println("showDeal(currentIndex);");
                 out.println("</script>");

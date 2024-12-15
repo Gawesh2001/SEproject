@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.mycompany.site;
 
 import java.io.IOException;
@@ -15,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
@@ -23,8 +20,8 @@ public class LoginServlet extends HttpServlet {
     private static final String DB_PASSWORD = "2001"; // Replace with your DB password
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get user inputs
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -32,11 +29,9 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            // Connect to database
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Load MySQL driver
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            // Prepare SQL query
             String sql = "SELECT * FROM cususers WHERE email = ? AND password = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
@@ -45,27 +40,30 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                // Valid user: redirect to Dashboard
-                response.sendRedirect("DashBoard.jsp");
+                // Valid user - set session
+                String username = rs.getString("username"); // Assuming "username" exists in the table
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+                session.setAttribute("user_id", rs.getInt("id")); // Assuming an 'id' column
+
+                response.sendRedirect("DashBoard.jsp"); // Redirect to dashboard
             } else {
-                // Invalid credentials: show an alert and stay on the login page
+                // Invalid credentials
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Invalid email or password!');");
-                out.println("location='LoginPage.jsp';"); // Redirect back to login page
+                out.println("location='LoginPage.jsp';");
                 out.println("</script>");
             }
 
-            // Close resources
             rs.close();
             pstmt.close();
             conn.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Print error details in console
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('An error occurred while processing your request.');");
+            out.println("alert('An error occurred: " + e.getMessage() + "');");
             out.println("location='LoginPage.jsp';");
             out.println("</script>");
         }
     }
 }
-
