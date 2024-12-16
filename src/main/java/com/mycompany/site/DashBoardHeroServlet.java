@@ -113,7 +113,7 @@ public class DashBoardHeroServlet extends HttpServlet {
             out.println("<div class='hero-content'>");
             out.println("<h1 id='movie-title'>Loading...</h1>");
             out.println("<div class='hero-buttons'>");
-            out.println("<a id='book-ticket' href='#'><button class='primary-buttons'>Book Tickets</button></a>");
+//            out.println("<a id='book-ticket' href='#'><button class='primary-buttons'>Book Tickets</button></a>");
             // Uncomment to enable "See Details" button if needed
             // out.println("<a id='see-details' href='#'><button class='secondary-buttons'>See Details</button></a>");
             out.println("</div>");
