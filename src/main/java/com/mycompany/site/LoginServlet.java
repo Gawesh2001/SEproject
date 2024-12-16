@@ -42,10 +42,10 @@ public class LoginServlet extends HttpServlet {
 
             if (rs.next()) {
                 // Valid user - set session
-                String username = rs.getString("username"); // Assuming "username" exists in the table
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                session.setAttribute("user_id", rs.getInt("id")); // Assuming an 'id' column
+//                String username = rs.getString("username"); // Assuming "username" exists in the table
+//                HttpSession session = request.getSession();
+//                session.setAttribute("username", username);
+//                session.setAttribute("user_id", rs.getInt("id")); // Assuming an 'id' column
 
                response.sendRedirect("DashBoard.jsp"); // Redirect to dashboard
                
