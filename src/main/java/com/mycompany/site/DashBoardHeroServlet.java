@@ -20,7 +20,7 @@ public class DashBoardHeroServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/abccinema";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "2001";
-    private static final String SELECT_QUERY = "SELECT * FROM addmovie WHERE timeframe IS NOT NULL"; // Display movies with non-null timeframe
+    private static final String SELECT_QUERY = "SELECT * FROM addmovie WHERE timeframe IS NOT NULL";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +35,7 @@ public class DashBoardHeroServlet extends HttpServlet {
             // Load JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Start the response HTML
+            // Start the HTML response
             out.println("<!DOCTYPE html>");
             out.println("<html lang='en'>");
             out.println("<head>");
@@ -43,83 +43,60 @@ public class DashBoardHeroServlet extends HttpServlet {
             out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
             out.println("<title>Hero Movies</title>");
             out.println("<link rel=\"stylesheet\" href=\"/Site/DashBoard.css\">");
-            out.println("<script>");
-            out.println("let movies = [];"); // JavaScript array to hold movie data
+            out.println("</head>");
+            out.println("<body>");
 
-            // Add movies to JavaScript array
+            // JavaScript Array for Movie Data
+            out.println("<script>");
+            out.println("let movies = [];");
             while (rs.next()) {
                 int movieId = rs.getInt("movieid");
                 String movieName = rs.getString("movieName");
                 String movieThumbnail = rs.getString("movieThumbnail");
                 String trailerLink = rs.getString("youtube");
 
-                // Populate the JavaScript array
-                out.println("movies.push({ id: " + movieId + ", name: '" + movieName + "', thumbnail: '" + movieThumbnail + "', trailerLink: '" + trailerLink + "' });");
+                out.println("movies.push({ id: " + movieId + ", name: '" + movieName + "', thumbnail: '" 
+                            + movieThumbnail + "', trailerLink: '" + trailerLink + "' });");
             }
 
-            // JavaScript for rotating the hero movies
+            // JavaScript Logic for Movie Rotation
             out.println("let currentIndex = 0;");
             out.println("function displayMovie(index) {");
             out.println("    const movie = movies[index];");
             out.println("    if (!movie) return;");
-            out.println("    const heroSection = document.querySelector('.hero');");
-            out.println("    const movieTitle = document.getElementById('movie-title');");
-            out.println("    const bookTicketBtn = document.getElementById('book-ticket');");
-            out.println("    heroSection.style.backgroundImage = `url(${movie.thumbnail})`;");
-            out.println("    movieTitle.textContent = movie.name;");
-            out.println("    bookTicketBtn.href = `/book/${movie.id}`;");
-            out.println("    const playButton = document.getElementById('play-button');");
-            out.println("    playButton.href = movie.trailerLink;");
+            out.println("    document.querySelector('.hero').style.backgroundImage = `url(${movie.thumbnail})`;");
+            out.println("    document.getElementById('movie-title').textContent = movie.name;");
+            out.println("    document.getElementById('play-button').href = movie.trailerLink;");
             out.println("}");
-
-            // Next and Previous movie navigation
             out.println("function nextMovie() {");
             out.println("    currentIndex = (currentIndex + 1) % movies.length;");
             out.println("    displayMovie(currentIndex);");
             out.println("}");
-
             out.println("function prevMovie() {");
             out.println("    currentIndex = (currentIndex - 1 + movies.length) % movies.length;");
             out.println("    displayMovie(currentIndex);");
             out.println("}");
-
-            // Automatically change the movie every 3 seconds
             out.println("window.onload = function() {");
             out.println("    if (movies.length > 0) {");
-            out.println("        displayMovie(currentIndex);"); // Display the first movie
-            out.println("        setInterval(function() {");
-            out.println("            nextMovie();"); // Change movie every 3 seconds
-            out.println("        }, 3000);");
+            out.println("        displayMovie(currentIndex);");
+            out.println("        setInterval(nextMovie, 3000);");
+            out.println("    } else {");
+            out.println("        console.log('No movies available.');");
             out.println("    }");
             out.println("};");
             out.println("</script>");
-            out.println("</head>");
-            out.println("<body>");
 
-            // Hero section with placeholders for dynamic content
-            out.println("<section class='hero'>");
-            out.println("<div class='hero-change-buttons'>");
-            out.println("<button id='prev-movie' onclick='prevMovie()'>");
-            out.println("<svg xmlns='http://www.w3.org/2000/svg' height='48' viewBox='0 96 960 960' width='48' class='hero-icon'>");
-            out.println("<path d='M560 816 320 576l240-240 42 42-198 198 198 198-42 42Z' />");
-            out.println("</svg>");
-            out.println("</button>");
-            out.println("<button id='next-movie' onclick='nextMovie()'>");
-            out.println("<svg xmlns='http://www.w3.org/2000/svg' height='48' viewBox='0 96 960 960' width='48' class='hero-icon'>");
-            out.println("<path d='M400 816l240-240-240-240-42 42 198 198-198 198 42 42Z' />");
-            out.println("</svg>");
-            out.println("</button>");
-            out.println("</div>");
-            out.println("<div class='hero-content'>");
-            out.println("<h1 id='movie-title'>Loading...</h1>");
-            out.println("<div class='hero-buttons'>");
-//            out.println("<a id='book-ticket' href='#'><button class='primary-buttons'>Book Tickets</button></a>");
-            // Uncomment to enable "See Details" button if needed
-            // out.println("<a id='see-details' href='#'><button class='secondary-buttons'>See Details</button></a>");
-            out.println("</div>");
-            out.println("</div>");
+            // Hero Section HTML
+            out.println("<section class='hero' style='background-size: cover; background-position: center;'>");
+            out.println("    <div class='hero-change-buttons'>");
+            out.println("        <button onclick='prevMovie()'>&lt;</button>");
+            out.println("        <button onclick='nextMovie()'>&gt;</button>");
+            out.println("    </div>");
+            out.println("    <div class='hero-content'>");
+            out.println("        <h1 id='movie-title'>Loading...</h1>");
+     
 
-            // Dynamically set the trailer link in the button
+            out.println("    </div>");
             out.println("<a id='play-button' href='#' target='_blank'>");
             out.println("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='play-button'>");
             out.println("<path fill-rule='evenodd' d='M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z' clip-rule='evenodd' />");
