@@ -59,7 +59,7 @@
             <input type="text" id="totalPrice" name="totalPrice" readonly>
         </div>
 
-        <button type="submit">Book Seats</button>
+        <button type="submit onclick="location.href='payment.jsp';">Book Seats</button>
     </form>
 
     <!-- Including Flatpickr for Date Picker -->

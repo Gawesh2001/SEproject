@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #ffffff 65%, #282828 35%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.payment-container {
+    background: #fff;
+    border-radius: 15px;
+    padding: 2rem;
+    width: 50%;
+    margin: 5% auto;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    animation: slideUp 1.5s ease-out forwards;
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.billing-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: border-color 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 1s;
+}
+
+.form-group input:focus {
+    border-color: #6a11cb;
+    outline: none;
+    box-shadow: 0 0 8px rgba(106, 17, 203, 0.5);
+}
+
+.buybtn {
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    min-width: 12rem;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #FF0C00, #FF8000);
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 136, 0, 0.3), 0 0 20px rgba(255, 136, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards 1.5s;
+}
+
+.buybtn:hover {
+    background: linear-gradient(90deg, #FF4500, #FFA500);
+    box-shadow: 0 6px 15px rgba(255, 136, 0, 0.4);
+    transform: scale(1.05);
+}
+
+.buybtn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 12, 0, 0.1), transparent);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.buybtn:focus-visible {
+    outline: 3px solid #FF8000;
+    outline-offset: 4px;
+}
+
+@keyframes subtlePulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 136, 0, 0.3), 0 0 20px rgba(255, 136, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 12px rgba(255, 136, 0, 0.4), 0 0 25px rgba(255, 136, 0, 0.3);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(50%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .payment-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+}
