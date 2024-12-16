@@ -20,7 +20,7 @@ public class DashBoardHeroServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/abccinema";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "2001";
-    private static final String SELECT_QUERY = "SELECT * FROM addmovie WHERE releaseDate <= CURDATE()"; // Filter movies released before today
+    private static final String SELECT_QUERY = "SELECT * FROM addmovie WHERE timeframe IS NOT NULL"; // Display movies with non-null timeframe
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -106,7 +106,7 @@ public class DashBoardHeroServlet extends HttpServlet {
             out.println("</button>");
             out.println("<button id='next-movie' onclick='nextMovie()'>");
             out.println("<svg xmlns='http://www.w3.org/2000/svg' height='48' viewBox='0 96 960 960' width='48' class='hero-icon'>");
-            out.println("<path d='M400 816l240-240-240-240-42 42 198 198-198 198 42 42Z'/>");
+            out.println("<path d='M400 816l240-240-240-240-42 42 198 198-198 198 42 42Z' />");
             out.println("</svg>");
             out.println("</button>");
             out.println("</div>");

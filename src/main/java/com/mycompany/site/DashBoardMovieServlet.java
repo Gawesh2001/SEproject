@@ -89,11 +89,11 @@ public class DashBoardMovieServlet extends HttpServlet {
                 String movieCategory = rs.getString("movieCategory");
                 String releaseDate = rs.getString("releaseDate");
                 String movieThumbnail = rs.getString("movieThumbnail");
-                String timeframe = rs.getString("timeframe");
+                String timeframe = rs.getString("timeframe"); // Check for null timeframe to categorize movie
                 String trailerLink = rs.getString("youtube"); // Assuming 'youtube' column stores trailer URL
 
-                // Determine if the movie is now showing or coming soon
-                boolean isNowShowing = releaseDate.compareTo(today) <= 0;
+                // Determine if the movie is now showing or coming soon based on 'timeframe' column
+                boolean isNowShowing = (timeframe != null);  // Movie is now showing if timeframe is not null
 
                 // Show movies based on the selected status
                 if ((status.equals("nowShowing") && isNowShowing) || (status.equals("comingSoon") && !isNowShowing)) {

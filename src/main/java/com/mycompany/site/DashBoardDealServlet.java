@@ -128,7 +128,7 @@ public class DashBoardDealServlet extends HttpServlet {
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            out.println("<p>Error fetching deals. Please try again later.</p>");
+            out.println("<p>No Deal and Adverticements  at the moment.</p>");
         }
     }
 }

@@ -1030,3 +1030,142 @@ p {
     }
 }
 
+/* Responsive design for large screens (e.g., desktop) */
+@media (min-width: 1201px) {
+    header {
+        padding: 15px 30px;
+    }
+
+    .logo {
+        width: auto;
+    }
+
+    .nav {
+        display: flex;
+        gap: 20px;
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+/* Responsive design for medium screens (tablets and smaller desktops) */
+@media (max-width: 1200px) {
+    .movies-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    }
+
+    header {
+        padding: 15px 20px;
+    }
+
+    .nav {
+        display: flex;
+        gap: 15px;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+/* Responsive design for small screens (smartphones in landscape mode) */
+@media (max-width: 800px) {
+    .movies-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    }
+
+    header {
+        padding: 10px 15px;
+        flex-direction: column;
+        align-items: flex-start; /* Align items vertically */
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .search-bar .search-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Responsive design for very small screens (smartphones in portrait mode) */
+@media (max-width: 500px) {
+    .movies-container {
+        grid-template-columns: 1fr; /* 1 column */
+    }
+
+    header {
+        padding: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .nav a {
+        font-size: 0.9rem;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .search-bar .search-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .login-btn, .profile-btn {
+        width: 100%;
+    }
+}
+
