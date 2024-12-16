@@ -1,5 +1,6 @@
 package com.mycompany.site;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -46,7 +47,9 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("username", username);
                 session.setAttribute("user_id", rs.getInt("id")); // Assuming an 'id' column
 
-                response.sendRedirect("DashBoard.jsp"); // Redirect to dashboard
+               response.sendRedirect("DashBoard.jsp"); // Redirect to dashboard
+               
+
             } else {
                 // Invalid credentials
                 out.println("<script type=\"text/javascript\">");

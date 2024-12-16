@@ -33,9 +33,12 @@ public class RetrieveTicketsByDateServlet extends HttpServlet {
         
         // Get the selected date from request
         String selectedDate = request.getParameter("selectedDate");
+        String movieId = request.getParameter("movieid");
 
         // SQL Query to retrieve data based on selected_date
        String query = "SELECT selected_seats FROM ticketbookings WHERE selected_date = ?";
+       //String query = "SELECT selected_seats FROM ticketbookings WHERE selected_date = ? AND movie_id = ?";
+
     
     // Initialize JSON Array
     JSONArray seatsArray = new JSONArray();
