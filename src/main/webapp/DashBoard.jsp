@@ -105,7 +105,7 @@
             <!-- Logo and Description -->
             <div class="footer-logo">
                 <div class="logo-box">
-                    <a href="index.html">
+                    <a href="DashBoard.jsp">
                         <img src="assets/logo.png" alt="Site Logo" width="100" height="auto" class="logo">
                     </a>
                 </div>

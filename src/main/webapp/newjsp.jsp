@@ -5,6 +5,15 @@
     <title>Feedback Form</title>
     <link rel="stylesheet" href="newcss.css">
     <style>
+        body {
+            background-color: #282828;
+            color: white;
+          }
+
+          .feedback-title {
+            color: white;
+          }
+
         .feedback-container {
             text-align: center;
             margin: 100px auto;
