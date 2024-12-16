@@ -74,6 +74,10 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
+
+#seating-area-wrap .booked {
+    background: red;
+}
 /* Seat Labels */
 .seat {
     display: none; /* Hide the checkbox */

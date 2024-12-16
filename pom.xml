@@ -20,6 +20,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+    <groupId>com.googlecode.json-simple</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>1.1.1</version>
+</dependency>
+        <dependency>
             <groupId>com.xnx3</groupId>
             <artifactId>xnx3</artifactId>
             <version>2.8</version>
