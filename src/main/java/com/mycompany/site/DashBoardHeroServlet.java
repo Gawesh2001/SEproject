@@ -42,7 +42,7 @@ public class DashBoardHeroServlet extends HttpServlet {
             out.println("<meta charset='UTF-8'>");
             out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
             out.println("<title>Hero Movies</title>");
-            out.println("<link rel=\"stylesheet\" href=\"/Site/DashBoard.css\">");
+            out.println("<link rel='stylesheet' href='/Site/DashBoard.css'>");
             out.println("</head>");
             out.println("<body>");
 
@@ -89,19 +89,32 @@ public class DashBoardHeroServlet extends HttpServlet {
             // Hero Section HTML
             out.println("<section class='hero' style='background-size: cover; background-position: center;'>");
             out.println("    <div class='hero-change-buttons'>");
-            out.println("        <button onclick='prevMovie()'>&lt;</button>");
-            out.println("        <button onclick='nextMovie()'>&gt;</button>");
+
+            // Prev Movie Button with SVG
+            out.println("        <button onclick='prevMovie()' class='hero-icon'>");
+            out.println("            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>");
+            out.println("                <path fill-rule='evenodd' d='M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z' clip-rule='evenodd' />");
+            out.println("            </svg>");
+            out.println("        </button>");
+
+            // Next Movie Button with SVG
+            out.println("        <button onclick='nextMovie()' class='hero-icon'>");
+            out.println("            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>");
+            out.println("                <path fill-rule='evenodd' d='M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z' clip-rule='evenodd' />");
+            out.println("            </svg>");
+            out.println("        </button>");
+
             out.println("    </div>");
             out.println("    <div class='hero-content'>");
             out.println("        <h1 id='movie-title'>Loading...</h1>");
-     
-
             out.println("    </div>");
-            out.println("<a id='play-button' href='#' target='_blank'>");
-            out.println("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='play-button'>");
-            out.println("<path fill-rule='evenodd' d='M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z' clip-rule='evenodd' />");
-            out.println("</svg>");
-            out.println("</a>");
+
+            // Play Button with SVG
+            out.println("    <a id='play-button' href='#' target='_blank'>");
+            out.println("        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='play-button'>");
+            out.println("            <path fill-rule='evenodd' d='M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z' clip-rule='evenodd' />");
+            out.println("        </svg>");
+            out.println("    </a>");
             out.println("</section>");
 
             out.println("</body>");

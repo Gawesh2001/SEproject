@@ -34,7 +34,7 @@ public class DashBoardMovieServlet extends HttpServlet {
         // Get the movie filter status ('nowShowing' or 'comingSoon') from the query parameters
         String status = request.getParameter("status");
         if (status == null) {
-            status = "nowShowing"; // Default to 'nowShowing' if no status is provided
+            status = "nowShowing"; 
         }
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -89,11 +89,11 @@ public class DashBoardMovieServlet extends HttpServlet {
                 String movieCategory = rs.getString("movieCategory");
                 String releaseDate = rs.getString("releaseDate");
                 String movieThumbnail = rs.getString("movieThumbnail");
-                String timeframe = rs.getString("timeframe"); // Check for null timeframe to categorize movie
-                String trailerLink = rs.getString("youtube"); // Assuming 'youtube' column stores trailer URL
+                String timeframe = rs.getString("timeframe"); 
+                String trailerLink = rs.getString("youtube");
 
                 // Determine if the movie is now showing or coming soon based on 'timeframe' column
-                boolean isNowShowing = (timeframe != null);  // Movie is now showing if timeframe is not null
+                boolean isNowShowing = (timeframe != null);  
 
                 // Show movies based on the selected status
                 if ((status.equals("nowShowing") && isNowShowing) || (status.equals("comingSoon") && !isNowShowing)) {
@@ -121,7 +121,7 @@ public class DashBoardMovieServlet extends HttpServlet {
                     out.println("</svg>");
                     out.println("</a>");
 
-                    out.println("</div>"); // Close movie card div
+                    out.println("</div>"); 
                 }
             }
 
@@ -130,8 +130,8 @@ public class DashBoardMovieServlet extends HttpServlet {
                 out.println("<p>No movies available at the moment.</p>");
             }
 
-            out.println("</div>"); // Close movie-list div
-            out.println("</section>"); // Close movies section
+            out.println("</div>");
+            out.println("</section>");
 
             out.println("</body>");
             out.println("</html>");

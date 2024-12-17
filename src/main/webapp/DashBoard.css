@@ -372,6 +372,7 @@ header .nav a:hover{
 }
 
 .hero-change-buttons .hero-icon{
+    width: 16px;
     fill: rgb(255, 136, 0);
 }
 

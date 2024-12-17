@@ -34,18 +34,31 @@ public class MovieSearchServlet extends HttpServlet {
         String query = request.getParameter("query");
         if (query != null && !query.trim().isEmpty()) {
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-                String sql = "SELECT movieName, movieThumbnail FROM addmovie WHERE movieName LIKE ?";
+                String sql = "SELECT movieName, movieThumbnail, movieid, timeframe FROM addmovie WHERE movieName LIKE ?";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setString(1, "%" + query + "%");
                     try (ResultSet rs = pstmt.executeQuery()) {
                         StringBuilder suggestions = new StringBuilder();
                         while (rs.next()) {
                             String movieName = rs.getString("movieName");
-                            String movieThumbnail = rs.getString("movieThumbnail");  // Column name is now movieThumbnail
-                            suggestions.append("<li>");
-                            suggestions.append("<img src='").append(movieThumbnail).append("' alt='").append(movieName).append("' style='width: 85px; height: 100px; margin-right: 10px; object-fit: cover; border-radius: 5px; border: 2px solid #ff8800;'>");
+                            String movieThumbnail = rs.getString("movieThumbnail"); 
+                            String movieid = rs.getString("movieid"); 
+                            String timeframe = rs.getString("timeframe"); 
+                            
+                            
+                            suggestions.append("<li style='cursor: pointer;'>");
+                            suggestions.append("<a href='Seats.jsp?movieid=").append(movieid)
+                                       .append("&movieName=").append(movieName)
+                                       .append("&movieThumbnail=").append(movieThumbnail)
+                                       .append("&timeframe=").append(timeframe)
+                                       .append("' style='text-decoration: none; display: flex; align-items: center;'>");
+                            suggestions.append("<img src='").append(movieThumbnail)
+                                       .append("' alt='").append(movieName)
+                                       .append("' style='width: 85px; height: 100px; margin-right: 10px; object-fit: cover; border-radius: 5px; border: 2px solid #ff8800;'>");
                             suggestions.append(movieName);
+                            suggestions.append("</a>");
                             suggestions.append("</li>");
+
                         }
                         
                         suggestions.append("<script>");
