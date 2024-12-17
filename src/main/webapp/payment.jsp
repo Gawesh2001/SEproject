@@ -1,8 +1,3 @@
-<%-- 
-    Document   : payment
-    Created on : Dec 16, 2024, 11:46:55 AM
-    Author     : Akmal Ifthikar
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,11 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Billing Page</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- External CSS -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/paymentcss.css">
 </head>
 <body>
@@ -37,18 +30,15 @@
                 <label for="address">Billing Address</label>
                 <input type="text" id="address" name="address" placeholder="123 Main St, City, Country" required>
             </div>
-            <form action="https://www.paypal.com/ncp/payment/694HTD3U9PWGU" method="post" target="_top" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
-                <input class="buybtn" type="submit" value="Checkout" />
-                <center>
-                    <img src="https://www.paypalobjects.com/images/Debit_Credit.svg" alt="cards" />
-                    <section>Powered by 
-                        <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height: 0.875rem; vertical-align: middle;" />
-                    </section>
-                </center>
-            </form>
+            <input class="buybtn" type="submit" value="Checkout">
+            <center>
+                <img src="https://www.paypalobjects.com/images/Debit_Credit.svg" alt="cards">
+                <section>
+                    Powered by 
+                    <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height: 0.875rem; vertical-align: middle;">
+                </section>
+            </center>
         </form>
     </div>
 </body>
 </html>
-
-
