@@ -50,7 +50,7 @@ public class CancelBookingServlet extends HttpServlet {
             statement.setString(2, email);  // Set email if used
             statement.setString(3, phoneNumber);  // Set phone number if used
         }
-            
+        
               
         // Execute the delete operation
         int rowsAffected = statement.executeUpdate();

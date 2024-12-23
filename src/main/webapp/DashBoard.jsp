@@ -31,7 +31,7 @@
                 </a>
                 <div class="dropdown-menu">
                    <a href="newjsp.jsp">Feedback</a>
-                   <a href="#cancel-booking">Cancel Booking</a>
+                   <a href="cancelBooking.jsp">Cancel Booking</a>
                 </div>
             </div>
         </nav>

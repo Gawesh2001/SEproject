@@ -110,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 });
 
+    var movieId = "<%= movieId %>";
+               
 
 function fetchData() {
     console.log("test")
@@ -119,10 +121,12 @@ function fetchData() {
     }
 
     
-    fetch("RetrieveTicketsByDateServlet?selectedDate=" + selectedDate)
+         fetch("RetrieveTicketsByDateServlet?selectedDate=" + selectedDate)
+     
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+         
                 var ele = document.getElementById("seating-area-wrap");
 
                 let combinedData = "";

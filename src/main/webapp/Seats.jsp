@@ -16,11 +16,18 @@
             String timeframe = request.getParameter("timeframe");
         %>
 
+        
+        
+        
         <div class="movie-info">
             <div class="movie-details">
                 <h2>Movie Name : <%= movieName%></h2>
-                <p>Timeframe: <input type="text" value="<%= timeframe%>" readonly></p>
+                <h3>Movie ID : <%= movieId%></h3>
+                
+                
 
+                <p>Timeframe: <input type="text" value="<%= timeframe%>" readonly></p>
+                
                 <!-- Date Picker -->
                 <div class="date-picker">
                     <span for="date">Select Date:</span>

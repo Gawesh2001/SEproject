@@ -37,8 +37,7 @@ public class RetrieveTicketsByDateServlet extends HttpServlet {
 
         // SQL Query to retrieve data based on selected_date
        String query = "SELECT selected_seats FROM ticketbookings WHERE selected_date = ?";
-       //String query = "SELECT selected_seats FROM ticketbookings WHERE selected_date = ? AND movie_id = ?";
-
+      
     
     // Initialize JSON Array
     JSONArray seatsArray = new JSONArray();
@@ -49,6 +48,7 @@ public class RetrieveTicketsByDateServlet extends HttpServlet {
 
         // Set the parameter for the prepared statement
         ps.setString(1, selectedDate);
+       
         
         ResultSet rs = ps.executeQuery();
 
@@ -60,6 +60,8 @@ public class RetrieveTicketsByDateServlet extends HttpServlet {
 
         // Check if any data was found
         if (seatsArray.isEmpty()) {
+            System.out.println("Movie ID: " + movieId);
+
             seatsArray.add("No data found for the selected date");
         }
 

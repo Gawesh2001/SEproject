@@ -1,4 +1,4 @@
-package com.mycompany.site;
+ package com.mycompany.site;
 
 import java.io.IOException;
 import java.math.BigDecimal;
