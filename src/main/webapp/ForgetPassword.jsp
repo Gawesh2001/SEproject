@@ -1,8 +1,4 @@
-<%-- 
-    Document   : ForgetPassword
-    Created on : Dec 9, 2024, 7:38:41 PM
-    Author     : gawes
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

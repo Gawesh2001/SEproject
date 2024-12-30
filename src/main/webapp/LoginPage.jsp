@@ -1,8 +1,4 @@
-<%-- 
-    Document   : loginpage
-    Created on : Dec 9, 2024, 6:40:19 PM
-    Author     : gawes
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

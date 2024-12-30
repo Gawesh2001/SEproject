@@ -33,36 +33,36 @@ public class CancelBookingServlet extends HttpServlet {
 
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-    // SQL query to delete booking details matching bookingId, email, and phone number (optional)
+    
     String sql = "DELETE FROM ticketbookings WHERE booking_id = ?";
     
-    // You can choose to include email and phone number if needed for more specific deletion
+   
     if (email != null && phoneNumber != null) {
         sql = "DELETE FROM ticketbookings WHERE booking_id = ? AND u_email = ? AND u_no = ?";
     }
     
     try (PreparedStatement statement = connection.prepareStatement(sql)) {
-        // Set parameters for the DELETE query
-        statement.setString(1, bookingId);  // Setting booking_id
         
-        // If email and phone number are used for more specific matching
+        statement.setString(1, bookingId);  
+        
+       
         if (email != null && phoneNumber != null) {
-            statement.setString(2, email);  // Set email if used
-            statement.setString(3, phoneNumber);  // Set phone number if used
+            statement.setString(2, email);  
+            statement.setString(3, phoneNumber);  
         }
         
               
-        // Execute the delete operation
+      
         int rowsAffected = statement.executeUpdate();
         
 
         
-        // Provide feedback to the user based on the operation result
+       
         if (rowsAffected > 0) {
-            // If rows were deleted, send a success response
+            
             response.getWriter().write("<script>alert('Booking canceled successfully! Confirmation mail sent to " + email + "'); window.location.href='DashBoard.jsp';</script>");
         } else {
-            // If no matching booking was found, show a failure message
+            
             response.getWriter().write("<script>alert('No matching booking found to cancel for Ticket ID: " + bookingId + "'); window.history.back();</script>");
         }
     }
@@ -73,7 +73,7 @@ public class CancelBookingServlet extends HttpServlet {
     }
 } catch (Exception e) {
 //    e.printStackTrace();
-    // In case of an error, display the exception message
+    
             response.getWriter().write("<script>alert('Here.'); window.history.back();</script>");
     response.getWriter().write("<script>alert('An error occurred: " + e.getMessage() + "'); window.history.back();</script>");
     return;

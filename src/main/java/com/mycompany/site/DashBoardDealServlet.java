@@ -29,15 +29,15 @@ public class DashBoardDealServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            // Load JDBC driver
+            
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Establish database connection and execute query
+            
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(SELECT_QUERY);
                  ResultSet rs = pstmt.executeQuery()) {
                 
-                // Start the response HTML
+                
                 out.println("<!DOCTYPE html>");
                 out.println("<html lang='en'>");
                 out.println("<head>");
@@ -49,23 +49,23 @@ public class DashBoardDealServlet extends HttpServlet {
                 out.println("<body>");
 
 
-                // Start outputting the HTML
+        
                 out.println("<section class=\"deals-advertisements\" id=\"deals-advertisements\">");
                 out.println("<h2>Deals and Advertisements</h2>");
                 out.println("<div class=\"slider-container\">");
 
-                // Previous button
+               
                 out.println("<button id=\"prev-deal\" class=\"nav-button\">");
                 out.println("<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" viewBox=\"0 0 24 24\">");
                 out.println("<path d=\"M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z\" />");
                 out.println("</svg>");
                 out.println("</button>");
 
-                // Deals wrapper
+             
                 out.println("<div class=\"deals-wrapper\">");
                 out.println("<div class=\"deals-container\">");
 
-                // Dynamically generate deals
+                
                 while (rs.next()) {
                     String dealTitle = rs.getString("dealTitle"); 
                     String dealImage = rs.getString("dealImage"); 
@@ -95,7 +95,7 @@ public class DashBoardDealServlet extends HttpServlet {
                 out.println("</div>"); 
                 out.println("</section>"); 
 
-                // Add JavaScript for navigation buttons and auto-change
+               
                 out.println("<script>");
                 out.println("let currentIndex = 0;");
                 out.println("const deals = document.querySelectorAll('.deal');");

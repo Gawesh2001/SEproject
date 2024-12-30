@@ -42,24 +42,24 @@
             </div>
             <ul id="suggestions-list"></ul>
 
-            <!-- Dynamic Login/Profile Section -->
+            
             <%
-                HttpSession existingSession = request.getSession(false); // Do not create a session if none exists
+                HttpSession existingSession = request.getSession(false); 
                 String username = null;
                 if (existingSession != null) {
                     username = (String) existingSession.getAttribute("username");
                 }
             %>
             <% if (username == null) { %>
-                <!-- User is not logged in -->
+                
                 <a href="LoginPage.jsp">
                     <button class="login-btn">Login</button>
                 </a>
             <% } else { %>
-                <!-- User is logged in -->
+                
                 <div class="dropdown">
                     <button class="profile-btn">
-                        <%= username %> <!-- Display username -->
+                        <%= username %> 
                     </button>
                     <div class="dropdown-menu">
                         <a href="LogoutServlet">Logout</a>
@@ -102,7 +102,7 @@
         </nav>
         <hr>
         <div class="footer-top">
-            <!-- Logo and Description -->
+            
             <div class="footer-logo">
                 <div class="logo-box">
                     <a href="DashBoard.jsp">
@@ -115,7 +115,7 @@
                 <p>customercare@cinema.lk</p>
             </div>
     
-            <!-- Useful Links -->
+           
             <div class="footer-useful-links">
                 <h4>USEFUL LINKS</h4>
                 <ul>
@@ -124,7 +124,7 @@
                 </ul>
             </div>
     
-            <!-- Subscribe Section -->
+           
             <div class="footer-subscribe">
                 <h4>Subscribe</h4>
                 <div class="subscribe-box">
@@ -185,7 +185,7 @@
             .catch(error => console.error('Error:', error));
     });
 
-    // Close suggestions when clicking outside
+    
     document.addEventListener('click', function(event) {
         var suggestionsList = document.getElementById('suggestions-list');
         var searchBar = document.querySelector('.search-bar');

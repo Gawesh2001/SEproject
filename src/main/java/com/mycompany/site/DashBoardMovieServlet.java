@@ -31,7 +31,7 @@ public class DashBoardMovieServlet extends HttpServlet {
         // Get today's date in the format YYYY-MM-DD
         String today = java.time.LocalDate.now().toString();
 
-        // Get the movie filter status ('nowShowing' or 'comingSoon') from the query parameters
+        
         String status = request.getParameter("status");
         if (status == null) {
             status = "nowShowing"; 
@@ -41,10 +41,10 @@ public class DashBoardMovieServlet extends HttpServlet {
              PreparedStatement pstmt = conn.prepareStatement(SELECT_QUERY);
              ResultSet rs = pstmt.executeQuery()) {
 
-            // Load JDBC driver
+          
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Start the response HTML
+           
             out.println("<!DOCTYPE html>");
             out.println("<html lang='en'>");
             out.println("<head>");
@@ -53,7 +53,7 @@ public class DashBoardMovieServlet extends HttpServlet {
             out.println("<title>View Movies</title>");
             out.println("<link rel=\"stylesheet\" href=\"/Site/DashBoard.css\">");
 
-            // JavaScript to handle movie filter and button style change (removed inline style modification)
+            
             out.println("<script>");
             out.println("function filterMovies(status) {");
             out.println("    // Update URL to reflect selected filter");
@@ -63,22 +63,22 @@ public class DashBoardMovieServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
 
-            // Movie section with existing buttons in JSP
+        
             out.println("<section class='movies' id='movies'>");
             out.println("<div class='movies-top'>");
             out.println("<div class='movie-release-buttons'>");
-            // Use the existing 'Now Showing' and 'Coming Soon' buttons with active class logic
+           
             out.println("<button id='nowShowingBtn' class='nowShowingBtn " + (status.equals("nowShowing") ? "active" : "") + "' onclick='filterMovies(\"nowShowing\")'>Now Showing</button>");
             out.println("<button id='comingSoonBtn' class='comingSoonBtn " + (status.equals("comingSoon") ? "active" : "") + "' onclick='filterMovies(\"comingSoon\")'>Coming Soon</button>");
             out.println("</div>");
             out.println("<div class='filter-and-search'>");
-            // Suggestions List
+           
             out.println("<ul id='suggestions-list'></ul>");
             out.println("</div>");
             out.println("</div>");
             out.println("<hr>");
 
-            // Movie list container
+           
             out.println("<div class='movie-list' id='movieList'>");
 
             boolean hasMovies = false;
@@ -92,17 +92,17 @@ public class DashBoardMovieServlet extends HttpServlet {
                 String timeframe = rs.getString("timeframe"); 
                 String trailerLink = rs.getString("youtube");
 
-                // Determine if the movie is now showing or coming soon based on 'timeframe' column
+                
                 boolean isNowShowing = (timeframe != null);  
 
-                // Show movies based on the selected status
+                
                 if ((status.equals("nowShowing") && isNowShowing) || (status.equals("comingSoon") && !isNowShowing)) {
                     out.println("<div class='movie-card'>");
 
-                    // Movie poster (background image)
+                   
                     out.println("<div class='poster' style='background-image: url(" + movieThumbnail + ")'></div>");
 
-                    // Movie details (name, genre)
+                   
                     out.println("<div class='details'>");
                     out.println("<h3 id='movieName'>" + movieName + "</h3>");
                     out.println("<hr>");
@@ -111,10 +111,10 @@ public class DashBoardMovieServlet extends HttpServlet {
                     out.println("</div>");
                     out.println("</div>");
 
-                    // Book Tickets button
+                    
                     out.println("<button class='primary-buttons' onclick='window.top.location.href=\"Seats.jsp?movieid=" + movieId + "&movieName=" + movieName + "&movieThumbnail=" + movieThumbnail + "&timeframe=" + timeframe + "\"'>Book Tickets</button>");
 
-                    // Play button (SVG icon) - linked to the trailer
+                    
                     out.println("<a href='" + trailerLink + "' target='_blank'>");
                     out.println("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='movie-play-button'>");
                     out.println("<path fill-rule='evenodd' d='M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z' clip-rule='evenodd' />");
@@ -125,7 +125,7 @@ public class DashBoardMovieServlet extends HttpServlet {
                 }
             }
 
-            // Check if no movies were found
+          
             if (!hasMovies) {
                 out.println("<p>No movies available at the moment.</p>");
             }

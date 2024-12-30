@@ -17,8 +17,8 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/abccinema";
-    private static final String DB_USER = "root"; // Replace with your DB username
-    private static final String DB_PASSWORD = "2001"; // Replace with your DB password
+    private static final String DB_USER = "root"; 
+    private static final String DB_PASSWORD = "2001"; 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // Load MySQL driver
+            Class.forName("com.mysql.cj.jdbc.Driver"); 
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
             String sql = "SELECT * FROM cususers WHERE email = ? AND password = ?";
@@ -47,11 +47,11 @@ public class LoginServlet extends HttpServlet {
 //                session.setAttribute("username", username);
 //                session.setAttribute("user_id", rs.getInt("id")); // Assuming an 'id' column
 
-               response.sendRedirect("DashBoard.jsp"); // Redirect to dashboard
+               response.sendRedirect("DashBoard.jsp"); 
                
 
             } else {
-                // Invalid credentials
+               
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Invalid email or password!');");
                 out.println("location='LoginPage.jsp';");
@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
             pstmt.close();
             conn.close();
         } catch (Exception e) {
-            e.printStackTrace(); // Print error details in console
+            e.printStackTrace(); 
             out.println("<script type=\"text/javascript\">");
             out.println("alert('An error occurred: " + e.getMessage() + "');");
             out.println("location='LoginPage.jsp';");

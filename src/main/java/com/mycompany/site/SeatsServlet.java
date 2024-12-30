@@ -30,7 +30,7 @@ public class SeatsServlet extends HttpServlet {
         String email = request.getParameter("email");
         String phoneNumber = request.getParameter("phoneNumber");
 
-        // Validate inputs
+        
         if (selectedSeats == null || selectedSeats.length == 0) {
             response.getWriter().write("<script>alert('No seats selected. Please try again.'); window.history.back();</script>");
             return;
@@ -67,11 +67,11 @@ public class SeatsServlet extends HttpServlet {
                 statement.setBigDecimal(6, pricePerSeat);
                 statement.setString(7, email);
                 statement.setString(8, phoneNumber);
-                statement.setInt(9, newTicketId); // Set the generated ticket ID
+                statement.setInt(9, newTicketId); 
                 statement.addBatch();
             }
 
-            // Execute the batch insert
+           
             int[] rowsInserted = statement.executeBatch();
             if (rowsInserted.length > 0) {
                 response.getWriter().write("<script>alert('Booking successful for " + rowsInserted.length + " seats! Ticket ID: " + newTicketId + "'); window.location.href='payment.jsp';</script>");

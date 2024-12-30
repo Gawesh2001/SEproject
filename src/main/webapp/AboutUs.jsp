@@ -74,7 +74,7 @@
             padding: 0 10px;
             font-size: 1rem;
             outline: none;
-            flex: 1; /* Makes input take the available space */
+            flex: 1; 
         }
 
 
@@ -92,8 +92,8 @@
         }
 
         .search-bar .search-btn:hover{
-            background-color: rgb(255, 150, 30); /* Slightly lighter orange */
-            box-shadow: 0 8px 15px rgba(255, 136, 0, 0.6); /* Glow effect */
+            background-color: rgb(255, 150, 30); 
+            box-shadow: 0 8px 15px rgba(255, 136, 0, 0.6); 
             transform: scale(1.02);
         }
 
@@ -180,9 +180,9 @@
         }
 
         footer hr {
-            border: 0; /* Removes default border */
-            height: 2px; /* Sets the height of the line */
-            background-color: #333; /* Sets the color of the line */
+            border: 0;
+            height: 2px;
+            background-color: #333; 
         }
 
 
@@ -300,13 +300,13 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center; /* Ensures the icon is centered */
+            justify-content: center; 
         }
 
         .subscribe-box button svg {
-            width: 20px; /* Adjust to your desired size */
+            width: 20px; 
             height: 20px;
-            fill: white; /* Ensures the icon matches the button text color */
+            fill: white; 
         }
 
         .subscribe-box button:hover {
@@ -369,9 +369,9 @@
         }
 
         .icon {
-            width: 25px; /* Increase width */
-            height: 25px; /* Increase height */
-            transition: transform 0.3s; /* Smooth rotation */
+            width: 25px; 
+            height: 25px; 
+            transition: transform 0.3s; 
         }
 
 
@@ -385,30 +385,30 @@
 
         .dropdown-menu {
             position: absolute;
-            top: 100%; /* Position the dropdown below the 'Support' */
+            top: 100%; 
             left: 0;
-            display: none; /* Hides dropdown by default */
-            flex-direction: column; /* Stack items vertically */
+            display: none; 
+            flex-direction: column; 
             background-color: transparent;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 10;
-            min-width: 150px; /* Ensures proper dropdown width */
+            min-width: 150px; 
         }
 
         .dropdown-menu a {
             padding: 10px 20px;
             color: rgb(255, 255, 255);
             text-decoration: none;
-            display: block; /* Ensures full-width clickable area */
-            white-space: nowrap; /* Prevents text wrapping */
+            display: block; 
+            white-space: nowrap; 
         }
 
         .dropdown-menu a:hover {
-            background-color: #f0f0f0; /* Adds hover effect */
+            background-color: #f0f0f0; 
         }
 
         .dropdown:hover .dropdown-menu {
-            display: flex; /* Makes dropdown visible on hover */
+            display: flex; 
         }
         .tooltip {
             margin-top: 10px;
@@ -460,24 +460,24 @@
             </div>
             <ul id="suggestions-list"></ul>
 
-            <!-- Dynamic Login/Profile Section -->
+          
             <%
-                HttpSession existingSession = request.getSession(false); // Do not create a session if none exists
+                HttpSession existingSession = request.getSession(false); 
                 String username = null;
                 if (existingSession != null) {
                     username = (String) existingSession.getAttribute("username");
                 }
             %>
             <% if (username == null) { %>
-                <!-- User is not logged in -->
+               
                 <a href="LoginPage.jsp">
                     <button class="login-btn">Login</button>
                 </a>
             <% } else { %>
-                <!-- User is logged in -->
+               
                 <div class="dropdown">
                     <button class="profile-btn">
-                        <%= username %> <!-- Display username -->
+                        <%= username %> 
                     </button>
                     <div class="dropdown-menu">
                         <a href="LogoutServlet">Logout</a>
@@ -549,7 +549,7 @@
     </nav>
     <hr>
     <div class="footer-top">
-        <!-- Logo and Description -->
+      
         <div class="footer-logo">
             <div class="logo-box">
                 <a href="index.html">
@@ -562,7 +562,7 @@
             <p>customercare@cinema.lk</p>
         </div>
 
-        <!-- Useful Links -->
+        
         <div class="footer-useful-links">
             <h4>USEFUL LINKS</h4>
             <ul>
@@ -571,7 +571,7 @@
             </ul>
         </div>
 
-        <!-- Subscribe Section -->
+      
         <div class="footer-subscribe">
             <h4>Subscribe</h4>
             <div class="subscribe-box">
@@ -613,10 +613,10 @@
     const tooltipMessage = document.getElementById('tooltip-message');
 
     mobileNumber.addEventListener('click', () => {
-        // Copy the mobile number to clipboard
+        
         const number = mobileNumber.textContent;
         navigator.clipboard.writeText(number).then(() => {
-            // Show the tooltip message
+           
             tooltipMessage.style.display = 'block';
             setTimeout(() => {
                 tooltipMessage.style.display = 'none';
@@ -647,7 +647,7 @@
             .catch(error => console.error('Error:', error));
     });
 
-    // Close suggestions when clicking outside
+    
     document.addEventListener('click', function(event) {
         var suggestionsList = document.getElementById('suggestions-list');
         var searchBar = document.querySelector('.search-bar');

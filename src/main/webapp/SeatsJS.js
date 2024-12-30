@@ -11,12 +11,12 @@ flatpickr("#selectedDate", {
 document.getElementById("bookingForm").addEventListener("submit", function (event) {
     var selectedDate = document.getElementById("selectedDate").value;
 
-    // Validate if a valid date is selected
+
     if (!selectedDate) {
         event.preventDefault();
         alert('Please select a valid date.');
     } else {
-        // Assign the selected date to the hidden input field (for submission)
+        
         document.getElementById("hiddenSelectedDate").value = selectedDate;
     }
 });
@@ -90,7 +90,7 @@ document.addEventListener('scroll', function () {
 
 
 
-let selectedDate = ""; // store selected date
+let selectedDate = ""; 
 
 
 document.addEventListener("DOMContentLoaded", function () {

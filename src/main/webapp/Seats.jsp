@@ -31,28 +31,14 @@
                 <!-- Date Picker -->
                 <div class="date-picker">
                     <span for="date">Select Date:</span>
-                    <!--  <input type="text" id="selectedDate" name="selectedDate" required> -->
+                    
 
-                    <!-- Input to Store the Selected Date -->
+                    
                     <input type="text" id="selectedDate" name="selectedDate" placeholder="Select Date" readonly required>
 
-                    <!-- Button to Open Date Picker -->
+                
                     <button onclick="showDatePicker()">Select Date</button>
                 </div>
-
-
-
-
-
-
-                <!-- Button to Fetch Data   <button onclick="fetchData()">Fetch Data</button> -->
-
-
-                <!-- Div to Display the Ticket Booking Data 
-                <div id="ticketData" style="margin-top: 20px; border: 1px solid #ddd; padding: 10px;">
-                    <h3>Booking Data Will Be Displayed Here</h3>
-                </div>
-                -->
 
             </div>
         </div>
@@ -93,7 +79,7 @@
             <button type="submit onclick="location.href='payment.jsp';">Book Seats</button>
         </form>
 
-        <!-- Including Flatpickr for Date Picker -->
+        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 

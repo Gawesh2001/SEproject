@@ -15,16 +15,16 @@
         }
 
         header {
-            position: relative; /* Allows the header to overlap the hero section */
+            position: relative; 
             top: 0;
             left: 0;
-            width: 100%; /* Ensures the header spans the full width */
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px; /* Adjust spacing */
-            background-color: transparent; /* Transparent black background */
-            color: white; /* Text color */
+            padding: 15px 30px;
+            background-color: transparent; 
+            color: white; 
             z-index: 10; 
         }     
 
@@ -66,7 +66,7 @@
         
         input:focus, textarea:focus {
             border-color: #ff8800;
-            outline: none; /* Remove the default outline for a cleaner look */
+            outline: none; 
         }
         
         input:active {
@@ -120,13 +120,13 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center; /* Ensures the icon is centered */
+            justify-content: center; 
         }
 
         .subscribe-box button svg {
-            width: 20px; /* Adjust to your desired size */
+            width: 20px; 
             height: 20px;
-            fill: white; /* Ensures the icon matches the button text color */
+            fill: white; 
         }
 
         .subscribe-box button:hover {
@@ -168,24 +168,24 @@
             </div>
             <ul id="suggestions-list"></ul>
 
-            <!-- Dynamic Login/Profile Section -->
+          
             <%
-                HttpSession existingSession = request.getSession(false); // Do not create a session if none exists
+                HttpSession existingSession = request.getSession(false); 
                 String username = null;
                 if (existingSession != null) {
                     username = (String) existingSession.getAttribute("username");
                 }
             %>
             <% if (username == null) { %>
-                <!-- User is not logged in -->
+                
                 <a href="LoginPage.jsp">
                     <button class="login-btn">Login</button>
                 </a>
             <% } else { %>
-                <!-- User is logged in -->
+                
                 <div class="dropdown">
                     <button class="profile-btn">
-                        <%= username %> <!-- Display username -->
+                        
                     </button>
                     <div class="dropdown-menu">
                         <a href="LogoutServlet">Logout</a>
@@ -249,7 +249,7 @@
                 <p>customercare@cinema.lk</p>
             </div>
     
-            <!-- Useful Links -->
+            
             <div class="footer-useful-links">
                 <h4>USEFUL LINKS</h4>
                 <ul>
@@ -258,7 +258,7 @@
                 </ul>
             </div>
     
-            <!-- Subscribe Section -->
+            
             <div class="footer-subscribe">
                 <h4>Subscribe</h4>
                 <div class="subscribe-box">
@@ -317,7 +317,7 @@
             .catch(error => console.error('Error:', error));
     });
 
-    // Close suggestions when clicking outside
+    
     document.addEventListener('click', function(event) {
         var suggestionsList = document.getElementById('suggestions-list');
         var searchBar = document.querySelector('.search-bar');

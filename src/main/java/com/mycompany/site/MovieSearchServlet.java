@@ -30,7 +30,7 @@ public class MovieSearchServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        // Handle the search query to display suggestions from the database
+        
         String query = request.getParameter("query");
         if (query != null && !query.trim().isEmpty()) {
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {

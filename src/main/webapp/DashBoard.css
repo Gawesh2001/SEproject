@@ -104,7 +104,7 @@ ul li, ol li {
 }
 
 .primary-buttons:hover{
-    background-color: rgb(255, 150, 30); /* Slightly lighter orange */
+    background-color: rgb(255, 150, 30); 
     box-shadow: 0 8px 15px rgba(255, 136, 0, 0.6); /* Glow effect */
     transform: scale(1.02);
     color: white;
@@ -123,9 +123,9 @@ ul li, ol li {
 }
 
 .secondary-buttons:hover {
-    background-color: #f2f2f2; /* Slightly darker white */
-    box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3); /* Subtle shadow */
-    transform: scale(1.02); /* Slight zoom effect */
+    background-color: #f2f2f2; 
+    box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3); 
+    transform: scale(1.02); 
     color: rgb(255, 136, 0);
 }
 
@@ -134,16 +134,16 @@ ul li, ol li {
 
 /* Header */
 header {
-    position: absolute; /* Allows the header to overlap the hero section */
+    position: absolute; 
     top: 0;
     left: 0;
-    width: 100%; /* Ensures the header spans the full width */
+    width: 100%; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px; /* Adjust spacing */
-    background-color: transparent; /* Transparent black background */
-    color: white; /* Text color */
+    padding: 15px 30px; 
+    background-color: transparent; 
+    color: white;
     z-index: 10; 
 }                      
 
@@ -186,9 +186,9 @@ header .nav a:hover{
 }
 
 .icon {
-    width: 25px; /* Increase width */
-    height: 25px; /* Increase height */
-    transition: transform 0.3s; /* Smooth rotation */
+    width: 25px; 
+    height: 25px; 
+    transition: transform 0.3s; 
 }
 
 
@@ -202,30 +202,30 @@ header .nav a:hover{
 
 .dropdown-menu {
     position: absolute;
-    top: 100%; /* Position the dropdown below the 'Support' */
+    top: 100%; 
     left: 0;
-    display: none; /* Hides dropdown by default */
-    flex-direction: column; /* Stack items vertically */
+    display: none; 
+    flex-direction: column; 
     background-color: transparent;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    min-width: 150px; /* Ensures proper dropdown width */
+    min-width: 150px; 
 }
 
 .dropdown-menu a {
     padding: 10px 20px;
     color: black;
     text-decoration: none;
-    display: block; /* Ensures full-width clickable area */
-    white-space: nowrap; /* Prevents text wrapping */
+    display: block; 
+    white-space: nowrap; 
 }
 
 .dropdown-menu a:hover {
-    background-color: #f0f0f0; /* Adds hover effect */
+    background-color: #f0f0f0; 
 }
 
 .dropdown:hover .dropdown-menu {
-    display: flex; /* Makes dropdown visible on hover */
+    display: flex; 
 }
 
 
@@ -235,7 +235,7 @@ header .nav a:hover{
     gap: 15px;
 }
 
-/* Search Bar */
+
 .search-bar {
     display: flex;
     align-items: center;
@@ -250,7 +250,7 @@ header .nav a:hover{
     padding: 0 10px;
     font-size: 1rem;
     outline: none;
-    flex: 1; /* Makes input take the available space */
+    flex: 1; 
 }
 
 
@@ -268,8 +268,8 @@ header .nav a:hover{
 }
 
 .search-bar .search-btn:hover{
-    background-color: rgb(255, 150, 30); /* Slightly lighter orange */
-    box-shadow: 0 8px 15px rgba(255, 136, 0, 0.6); /* Glow effect */
+    background-color: rgb(255, 150, 30); 
+    box-shadow: 0 8px 15px rgba(255, 136, 0, 0.6); 
     transform: scale(1.02);
 }
 
@@ -434,7 +434,7 @@ button.active {
 
 
 .movie-release-buttons button:hover {
-    background-color: #777; /* Optional hover effect */
+    background-color: #777; 
     color: white;
 }
 
@@ -445,16 +445,16 @@ button.active {
 
 .movies-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Dynamically wrap rows */
-    gap: 20px; /* Space between grid items */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px; 
     padding: 20px;
-    overflow: visible; /* Allow items to expand without hiding them */
+    overflow: visible; 
     margin-top: 20px;
 }
 
 .movie-list {
-    height: auto; /* Let the container height grow dynamically */
-    overflow: visible; /* Avoid scrollbars */
+    height: auto; 
+    overflow: visible; 
     padding-bottom: 20px;
     margin-top: 20px;
 }
@@ -529,14 +529,14 @@ button.active {
 }
 
 .movie-card .details h3 {
-    font-size: 23px; /* Adjust font size as needed */
+    font-size: 23px; 
     font-weight: bold;
     margin-bottom: 5px; 
     margin-top: 5px; 
-    text-align: left; /* Optional: Center-align text */
-    white-space: normal; /* Allow text to wrap to the next line */
-    word-wrap: break-word; /* Ensure long words break properly */
-    line-height: 1; /* Adjust spacing between lines */
+    text-align: left; 
+    white-space: normal; 
+    word-wrap: break-word; 
+    line-height: 1; 
     
 }
 
@@ -680,9 +680,9 @@ button.active {
 }
 
 footer hr {
-    border: 0; /* Removes default border */
-    height: 2px; /* Sets the height of the line */
-    background-color: #333; /* Sets the color of the line */
+    border: 0; 
+    height: 2px; 
+    background-color: #333; 
 }
 
 
@@ -800,13 +800,13 @@ footer hr {
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center; /* Ensures the icon is centered */
+    justify-content: center; 
 }
 
 .subscribe-box button svg {
-    width: 20px; /* Adjust to your desired size */
+    width: 20px; 
     height: 20px;
-    fill: white; /* Ensures the icon matches the button text color */
+    fill: white;
 }
 
 .subscribe-box button:hover {
@@ -865,23 +865,7 @@ footer hr {
 
 
 
-/*#filter-button {
-    background: none;  No background 
-    border: none;  No border 
-    cursor: pointer;  Hand pointer on hover 
-}
 
-#filter-button svg {
-    width: 32px;  Adjust icon size 
-    height: 32px;
-    fill: rgb(68, 68, 68);  Icon color 
-    transition: transform 0.2s ease, fill 0.2s ease;
-}
-
-#filter-button:hover svg {
-    transform: scale(1.1);  Slight zoom effect on hover 
-    fill: rgb(255, 136, 0);  Change color on hover 
-}*/
 
 #date {
     width: 100%;
@@ -916,9 +900,9 @@ footer hr {
     background-color: #f4f4f9;
     color: #333;
     width: calc(100% - 20px);
-    top: calc(100% + 10px); /* Position the list just below the search bar */
+    top: calc(100% + 10px); 
     right: 0;
-    z-index: 10; /* Ensure it's above other content */
+    z-index: 10; 
 }
 
 #suggestions-list li {
@@ -928,15 +912,15 @@ footer hr {
     cursor: pointer;
     display: flex;
     align-items: center;
-    height: 130px;  /* Adjusted height for better space */
+    height: 130px;  
     border-bottom: 2px solid lightgray;
 }
 
 #suggestions-list li img {
-    width: 120px;   /* Increased width for images */
-    height: 90px;   /* Increased height for images */
-    object-fit: cover; /* Ensures the image scales without distortion */
-    margin-right: 20px;  /* Space between image and text */
+    width: 120px;   
+    height: 90px; 
+    object-fit: cover; 
+    margin-right: 20px;  
     border: 2px solid #ff8800;
 }
 

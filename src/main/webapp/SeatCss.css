@@ -28,11 +28,11 @@ body {
 /* Movie Thumbnail */
 .movie-thumbnail {
     display: block;
-    width: 1000px; /* Fixed width */
-    height: 300px; /* Fixed height */
-    border-radius: 15px; /* Slight curve to fit within the TV */
-    object-fit: cover; /* Ensures the image scales to fill the container while maintaining aspect ratio */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Box shadow for the thumbnail */
+    width: 1000px; 
+    height: 300px; 
+    border-radius: 15px; 
+    object-fit: cover;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
 }
 
 

@@ -115,24 +115,24 @@ p span{
             </div>
             <ul id="suggestions-list"></ul>
 
-            <!-- Dynamic Login/Profile Section -->
+          
             <%
-                HttpSession existingSession = request.getSession(false); // Do not create a session if none exists
+                HttpSession existingSession = request.getSession(false); 
                 String username = null;
                 if (existingSession != null) {
                     username = (String) existingSession.getAttribute("username");
                 }
             %>
             <% if (username == null) { %>
-                <!-- User is not logged in -->
+            
                 <a href="LoginPage.jsp">
                     <button class="login-btn">Login</button>
                 </a>
             <% } else { %>
-                <!-- User is logged in -->
+                
                 <div class="dropdown">
                     <button class="profile-btn">
-                        <%= username %> <!-- Display username -->
+                        <%= username %> 
                     </button>
                     <div class="dropdown-menu">
                         <a href="LogoutServlet">Logout</a>
